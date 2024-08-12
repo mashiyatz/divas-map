@@ -1,2 +1,2 @@
-# divas-map
-Development of map presenting community resources.
+# Community Map (DIVAS)
+Development of map presenting community resources, by Andriana Mereuta and Mashiyat Zaman.
