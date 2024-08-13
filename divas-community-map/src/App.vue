@@ -13,6 +13,8 @@
 </template>
 
 <script lang="ts">
+// Following this example: https://maplibre.org/maplibre-gl-js/docs/examples/restrict-bounds/
+
 import { Map, type LngLatBoundsLike } from 'maplibre-gl'
 
 const bounds: LngLatBoundsLike | undefined = [
@@ -35,6 +37,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+// div containing map has to have nonzero width and height
 #map {
   height: 100vh;
   width: 100vw;
