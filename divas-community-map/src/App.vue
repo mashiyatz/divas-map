@@ -1,82 +1,42 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-</script>
-
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
+  <head>
+    <title>DIVAS Map NYC</title>
+    <meta property="og:description" content="A map of NYC" />
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.2/dist/maplibre-gl.css" />
+  </head>
 
-    <div class="wrapper">
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
-    </div>
-  </header>
-
-  <RouterView />
+  <body>
+    <div id="map" ref="map"></div>
+  </body>
 </template>
 
-<style scoped>
-header {
-  line-height: 1.5;
-  max-height: 100vh;
-}
+<script lang="ts">
+import { Map, type LngLatBoundsLike } from 'maplibre-gl'
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
+const bounds: LngLatBoundsLike | undefined = [
+  [-74.04728500751165, 40.68392799015035], // Southwest coordinates
+  [-73.91058699000139, 40.87764500765852] // Northeast coordinates
+]
 
-nav {
-  width: 100%;
-  font-size: 12px;
-  text-align: center;
-  margin-top: 2rem;
-}
-
-nav a.router-link-exact-active {
-  color: var(--color-text);
-}
-
-nav a.router-link-exact-active:hover {
-  background-color: transparent;
-}
-
-nav a {
-  display: inline-block;
-  padding: 0 1rem;
-  border-left: 1px solid var(--color-border);
-}
-
-nav a:first-of-type {
-  border: 0;
-}
-
-@media (min-width: 1024px) {
-  header {
-    display: flex;
-    place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
+export default {
+  mounted() {
+    const map: Map = new Map({
+      container: 'map',
+      style: 'https://api.maptiler.com/maps/streets/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+      // style: 'https://demotiles.maplibre.org/style.json',
+      center: [-73.9978, 40.7209],
+      zoom: 14,
+      maxBounds: bounds
+    })
   }
+}
+</script>
 
-  .logo {
-    margin: 0 2rem 0 0;
-  }
-
-  header .wrapper {
-    display: flex;
-    place-items: flex-start;
-    flex-wrap: wrap;
-  }
-
-  nav {
-    text-align: left;
-    margin-left: -1rem;
-    font-size: 1rem;
-
-    padding: 1rem 0;
-    margin-top: 1rem;
-  }
+<style lang="scss" scoped>
+#map {
+  height: 100vh;
+  width: 100vw;
 }
 </style>
