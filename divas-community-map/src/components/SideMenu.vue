@@ -58,19 +58,16 @@ import { ref } from 'vue'
 import { sideMenuStore } from '@/stores/sideMenuState'
 
 const sideMenu = sideMenuStore()
-const isExpanded = ref(false)
 
 const ToggleMenu = () => {
-  // isExpanded.value = !isExpanded.value
   sideMenu.$patch({
     isOpen: !sideMenu.$state.isOpen
   })
-  isExpanded.value = sideMenu.$state.isOpen
 }
 </script>
 
 <template v-model="store">
-  <aside :class="`${isExpanded ? 'isExpanded' : ''}`">
+  <aside :class="`${sideMenu.$state.isOpen ? 'isExpanded' : ''}`">
     <div class="menu-toggle-wrap">
       <button class="menu-toggle" @click="ToggleMenu">
         <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
@@ -78,7 +75,7 @@ const ToggleMenu = () => {
     </div>
     <div>
       <h1>{{ sideMenu.$state.title }}</h1>
-      <p>{{ sideMenu.$state.description }}</p>
+      <p class="text-black">{{ sideMenu.$state.description }}</p>
     </div>
   </aside>
 </template>
