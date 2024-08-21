@@ -9,8 +9,10 @@ export default {
 
 <style lang="scss">
 :root {
-  --sidebar-width: 300px;
+  // make sidebar-width responsive
+  --sidebar-width: 30vw;
   --default-color: rgb(35 55 75 / 90%);
+  --sidebar-color: rgb(196 109 94 / 95%);
   --white-color: #fff;
 }
 

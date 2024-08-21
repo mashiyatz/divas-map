@@ -7,7 +7,7 @@ aside {
   height: 100vh;
   max-height: 100vh;
   padding: 1rem;
-  background-color: var(--default-color);
+  background-color: var(--sidebar-color);
   color: var(--white-color);
   width: calc(2rem + 32px);
   transition: 0.2s ease-out;
@@ -41,6 +41,10 @@ aside {
     }
   }
 
+  .menu-content {
+    display: none;
+  }
+
   &.isExpanded {
     width: var(--sidebar-width);
 
@@ -49,12 +53,19 @@ aside {
         transform: scaleX(-1);
       }
     }
+
+    .menu-content {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      top: -4rem;
+      height: 100%;
+    }
   }
 }
 </style>
 
 <script setup lang="ts">
-import { ref } from 'vue'
 import { sideMenuStore } from '@/stores/sideMenuState'
 
 const sideMenu = sideMenuStore()
@@ -73,9 +84,40 @@ const ToggleMenu = () => {
         <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
       </button>
     </div>
-    <div>
-      <h1>{{ sideMenu.$state.title }}</h1>
-      <p class="text-black">{{ sideMenu.$state.description }}</p>
+    <div class="menu-content">
+      <h1 class="text-4xl/loose font-bold">{{ sideMenu.$state.title }}</h1>
+      <p class="text-lg">{{ sideMenu.$state.description }}</p>
+      <div class="menu-media pt-6 w-full h-full">
+        <!-- if video, if photo, if audio -->
+        <img
+          :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
+          :src="`${sideMenu.$state.url}`"
+        />
+        <!-- <video
+          :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
+          :src="`${sideMenu.$state.url}`"
+        ></video> -->
+        <iframe
+          :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
+          class="w-full h-3/6"
+          :src="`${sideMenu.$state.url}`"
+          :title="`${sideMenu.$state.title}`"
+          frameborder="1"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerpolicy="strict-origin-when-cross-origin"
+          allowfullscreen
+        ></iframe>
+        <audio
+          :class="`${sideMenu.$state.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
+          :src="`${sideMenu.$state.url}`"
+        ></audio>
+        <!-- <iframe
+          :class="`${sideMenu.$state.mediaType}`"
+          class="w-full h-full"
+          :src="`${sideMenu.$state.url}`"
+          frameborder="2px"
+        ></iframe> -->
+      </div>
     </div>
   </aside>
 </template>

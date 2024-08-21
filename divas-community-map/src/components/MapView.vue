@@ -9,26 +9,49 @@ const bounds: LngLatBoundsLike | undefined = [
   [-73.817894, 40.721256] // Northeast coordinates
 ]
 
+const loremIpsum =
+  'Lorem ipsum odor amet, consectetuer adipiscing elit. Curae litora duis potenti elementum quam hac. Mollis fusce nisl purus lacinia tortor posuere rhoncus lacinia. Suscipit nascetur augue molestie faucibus facilisi habitasse. Euismod pellentesque turpis sed iaculis non adipiscing porttitor. Odio venenatis litora montes ad justo hendrerit.'
+
 export default {
   mounted() {
     const map: Map = new Map({
       container: 'map',
-      style: 'https://api.maptiler.com/maps/streets/style.json?key=vbWcEeVNDHjFUuEi2uGd',
-      center: [-73.9978, 40.7209],
+      style:
+        'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+      // 'https://api.maptiler.com/maps/streets-v2/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+      // 'https://api.maptiler.com/maps/streets/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+      center: [-73.74959, 40.682273],
       pitch: 45,
       minPitch: 30,
       maxPitch: 60,
-      zoom: 14,
-      maxBounds: bounds
+      zoom: 18
+      // maxBounds: bounds
     })
 
-    map.on('load', async (e) => {
+    // map.on('styleimagemissing', (e) => {
+    //   console.log('loading missing image: ' + e.id)
+    //   if (e.id === 'marker') {
+    //     map.loadImage(e.id + '.png', (error, image) => {
+    //       if (error) throw error
+    //       if (!map.hasImage(e.id)) map.addImage(e.id, image)
+    //       map.getSource('markers').setData(url)
+    //     })
+    //   }
+    // })
+
+    map.on('load', async () => {
       var markerImage = await map.loadImage(
-        'https://upload.wikimedia.org/wikipedia/commons/7/74/Location_icon_from_Noun_Project.png'
+        'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
+        // 'https://upload.wikimedia.org/wikipedia/commons/7/74/Location_icon_from_Noun_Project.png'
+        // 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png'
       )
       const storeSideMenu = sideMenuStore()
 
-      map.addImage('marker', markerImage.data)
+      if (!map.hasImage('marker')) map.addImage('marker', markerImage.data)
+      else {
+        map.removeImage('marker')
+        map.addImage('marker', markerImage.data)
+      }
       map.addSource('point', {
         // can generate object with all relevant information, then search that object within properties
         type: 'geojson',
@@ -38,34 +61,41 @@ export default {
             {
               type: 'Feature',
               properties: {
-                title: 'Somewhere A',
-                foo: 'heee'
+                title: 'A Live Kitchen',
+                description:
+                  "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+                mediaType: 'video', // replace these tags?
+                url: 'https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL'
               },
               geometry: {
                 type: 'Point',
-                coordinates: [-73.97549301444425, 40.674121965974805]
+                coordinates: [-73.742605, 40.676574]
               }
             },
             {
               type: 'Feature',
               properties: {
-                title: 'Somewhere B',
-                foo: 'hoo'
+                title: 'P.S. 156',
+                description: loremIpsum,
+                mediaType: 'image',
+                url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png'
               },
               geometry: {
                 type: 'Point',
-                coordinates: [-73.94201080976683, 40.63684839590867]
+                coordinates: [-73.743378, 40.672576]
               }
             },
             {
               type: 'Feature',
               properties: {
-                title: 'Somewhere C',
-                foo: 'haa'
+                title: 'P.S. 132',
+                description: loremIpsum,
+                mediaType: 'image',
+                url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png'
               },
               geometry: {
                 type: 'Point',
-                coordinates: [-73.9978, 40.7209]
+                coordinates: [-73.74959, 40.682273]
               }
             }
           ]
@@ -78,7 +108,7 @@ export default {
         source: 'point',
         layout: {
           'icon-image': 'marker',
-          'icon-size': 0.1
+          'icon-size': 0.5
         }
       })
 
@@ -89,7 +119,9 @@ export default {
         storeSideMenu.$patch({
           isOpen: true,
           title: e.features[0].properties.title,
-          description: e.features[0].properties.foo
+          description: e.features[0].properties.description,
+          mediaType: e.features[0].properties.mediaType,
+          url: e.features[0].properties.url
         })
       })
 
