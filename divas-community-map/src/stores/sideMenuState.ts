@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 
 interface SideMenuState {
+  id: number
   isOpen: boolean
   title: string
   description: string
@@ -11,11 +12,13 @@ interface SideMenuState {
 export const sideMenuStore = defineStore('sideMenuState', {
   state: (): SideMenuState => {
     return {
+      id: 0,
       isOpen: false,
-      title: 'A New Landmark',
-      description: 'This is a description.',
+      title: 'DIVAS Community Assets',
+      description:
+        'Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?',
       mediaType: 'image',
-      url: 'https://drive.google.com/file/d/1FNWwNJFVRxzz47pvjpLLwffWvXZ6UMQM/preview'
+      url: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg'
     }
   }
 })

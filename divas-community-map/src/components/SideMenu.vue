@@ -84,19 +84,15 @@ const ToggleMenu = () => {
         <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
       </button>
     </div>
-    <div class="menu-content">
+    <!-- How can I ease in and out when content changes? -->
+    <div class="menu-content" :class="`${sideMenu.$state.id}`">
       <h1 class="text-4xl/loose font-bold">{{ sideMenu.$state.title }}</h1>
       <p class="text-lg">{{ sideMenu.$state.description }}</p>
       <div class="menu-media pt-6 w-full h-full">
-        <!-- if video, if photo, if audio -->
         <img
           :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
           :src="`${sideMenu.$state.url}`"
         />
-        <!-- <video
-          :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
-          :src="`${sideMenu.$state.url}`"
-        ></video> -->
         <iframe
           :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
           class="w-full h-3/6"
@@ -111,12 +107,6 @@ const ToggleMenu = () => {
           :class="`${sideMenu.$state.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
           :src="`${sideMenu.$state.url}`"
         ></audio>
-        <!-- <iframe
-          :class="`${sideMenu.$state.mediaType}`"
-          class="w-full h-full"
-          :src="`${sideMenu.$state.url}`"
-          frameborder="2px"
-        ></iframe> -->
       </div>
     </div>
   </aside>

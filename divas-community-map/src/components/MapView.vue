@@ -4,6 +4,7 @@
 import { Map, type LngLatBoundsLike } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 
+// fix bounds around Queens
 const bounds: LngLatBoundsLike | undefined = [
   [-74.050696, 40.547044], // Southwest coordinates
   [-73.817894, 40.721256] // Northeast coordinates
@@ -18,8 +19,6 @@ export default {
       container: 'map',
       style:
         'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
-      // 'https://api.maptiler.com/maps/streets-v2/style.json?key=vbWcEeVNDHjFUuEi2uGd',
-      // 'https://api.maptiler.com/maps/streets/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
       minPitch: 30,
@@ -28,22 +27,9 @@ export default {
       // maxBounds: bounds
     })
 
-    // map.on('styleimagemissing', (e) => {
-    //   console.log('loading missing image: ' + e.id)
-    //   if (e.id === 'marker') {
-    //     map.loadImage(e.id + '.png', (error, image) => {
-    //       if (error) throw error
-    //       if (!map.hasImage(e.id)) map.addImage(e.id, image)
-    //       map.getSource('markers').setData(url)
-    //     })
-    //   }
-    // })
-
     map.on('load', async () => {
       var markerImage = await map.loadImage(
         'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
-        // 'https://upload.wikimedia.org/wikipedia/commons/7/74/Location_icon_from_Noun_Project.png'
-        // 'https://upload.wikimedia.org/wikipedia/commons/7/7c/201408_cat.png'
       )
       const storeSideMenu = sideMenuStore()
 
@@ -61,6 +47,7 @@ export default {
             {
               type: 'Feature',
               properties: {
+                id: 1,
                 title: 'A Live Kitchen',
                 description:
                   "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
@@ -75,6 +62,7 @@ export default {
             {
               type: 'Feature',
               properties: {
+                id: 2,
                 title: 'P.S. 156',
                 description: loremIpsum,
                 mediaType: 'image',
@@ -88,6 +76,7 @@ export default {
             {
               type: 'Feature',
               properties: {
+                id: 3,
                 title: 'P.S. 132',
                 description: loremIpsum,
                 mediaType: 'image',
@@ -112,11 +101,12 @@ export default {
         }
       })
 
-      map.on('click', 'points', (e: any) => {
+      map.on('mouseenter', 'points', (e: any) => {
         map.flyTo({
           center: e.features[0].geometry.coordinates
         })
         storeSideMenu.$patch({
+          id: e.features[0].properties.id,
           isOpen: true,
           title: e.features[0].properties.title,
           description: e.features[0].properties.description,
