@@ -1,7 +1,7 @@
 <script lang="ts">
 // Following this example: https://maplibre.org/maplibre-gl-js/docs/examples/restrict-bounds/
 
-import { Map, type LngLatBoundsLike } from 'maplibre-gl'
+import { Map, type LngLatBoundsLike, NavigationControl } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 
 // fix bounds around Queens
@@ -21,11 +21,22 @@ export default {
         'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
-      minPitch: 30,
-      maxPitch: 60,
-      zoom: 18
+      // minPitch: 45,
+      // maxPitch: 45,
+      zoom: 18, 
+      minZoom: 12, 
+      bearing: 0,
+      // dragRotate: false,
+      pitchWithRotate: false
+      // bearingSnap: 360,
       // maxBounds: bounds
     })
+
+    map.addControl(new NavigationControl({
+      showCompass: true,
+      showZoom: true,
+      visualizePitch: true
+    }))
 
     map.on('load', async () => {
       var markerImage = await map.loadImage(
@@ -48,6 +59,7 @@ export default {
               type: 'Feature',
               properties: {
                 id: 1,
+                neighborhood: 'Laurelton',
                 title: 'A Live Kitchen',
                 description:
                   "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
@@ -63,6 +75,7 @@ export default {
               type: 'Feature',
               properties: {
                 id: 2,
+                neighborhood: 'Laurelton',
                 title: 'P.S. 156',
                 description: loremIpsum,
                 mediaType: 'image',
@@ -77,6 +90,7 @@ export default {
               type: 'Feature',
               properties: {
                 id: 3,
+                neighborhood: 'Laurelton',
                 title: 'P.S. 132',
                 description: loremIpsum,
                 mediaType: 'image',
@@ -96,17 +110,25 @@ export default {
         type: 'symbol',
         source: 'point',
         layout: {
+          'text-field': ['get', 'title'],
+          'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+          'text-radial-offset': 2.5,
+          'text-justify': 'auto',
+          'text-size': 24,
           'icon-image': 'marker',
           'icon-size': 0.5
         }
       })
 
       map.on('mouseenter', 'points', (e: any) => {
+        // something weird happens when fly to at min zoom
         map.flyTo({
-          center: e.features[0].geometry.coordinates
+          center: e.features[0].geometry.coordinates,
+          zoom: 18
         })
         storeSideMenu.$patch({
           id: e.features[0].properties.id,
+          neighborhood: e.features[0].properties.neighborhood, 
           isOpen: true,
           title: e.features[0].properties.title,
           description: e.features[0].properties.description,

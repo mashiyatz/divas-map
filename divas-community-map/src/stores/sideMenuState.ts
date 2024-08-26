@@ -1,12 +1,25 @@
 import { defineStore } from 'pinia'
 
+interface media {
+  mediaType: string
+  url: string 
+  caption: string 
+}
+
+// TODO
+// 1. allow listing of multiple images, and include a main image that will be featuered on 3
+// 2. toggle between neighborhoods (a list of neighborhoods)
+// 3. toggle between landmarks (a list of landmarks, identified by main image)
+
 interface SideMenuState {
   id: number
+  neighborhood?: string
   isOpen: boolean
   title: string
   description: string
   mediaType: string
   url: string
+  allMedia?: media[]
 }
 
 export const sideMenuStore = defineStore('sideMenuState', {
