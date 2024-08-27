@@ -13,34 +13,6 @@ aside {
   transition: 0.2s ease-out;
   z-index: 99;
 
-  // .menu-toggle-wrap {
-  //   display: flex;
-  //   justify-content: flex-end;
-  //   margin-bottom: 1rem;
-  //   position: relative;
-  //   top: 0;
-  //   transition: 0.2s ease-out;
-
-  //   .menu-toggle {
-  //     transition: 0.2s ease-out;
-  //     border: none;
-  //     background: none;
-
-  //     .material-symbols-outlined {
-  //       transition: 0.2s ease-out;
-  //       font-size: 2rem;
-  //       color: var(--white-color);
-  //     }
-
-  //     &:hover {
-  //       .material-symbols-outlined {
-  //         color: var(--default-color);
-  //         transform: translateX(0.5rem);
-  //       }
-  //     }
-  //   }
-  // }
-
   .menu-content {
     display: none;
   }
@@ -61,100 +33,106 @@ aside {
       top: -4rem;
       height: 100%;
     }
-
   }
 }
 </style>
 
 <script setup lang="ts">
 import { sideMenuStore } from '@/stores/sideMenuState'
+import { supported } from 'mapbox-gl'
+import { onBeforeUnmount } from 'vue'
+import { onMounted } from 'vue'
+import { onBeforeMount } from 'vue'
+import { ref } from 'vue'
 
 const sideMenu = sideMenuStore()
+const activeSlideIndex = ref(0)
+const activeSlide = ref('')
+const intervalRef = ref()
 
-const ToggleMenu = () => {
-  sideMenu.$patch({
-    isOpen: !sideMenu.$state.isOpen
-  })
+const UpdateSlide = () => {
+  var newIndex = activeSlideIndex.value + 1
+  if (newIndex >= sideMenu.$state.slideShow?.length) newIndex = 0
+  console.log(sideMenu.$state.slideShow?.length)
+  activeSlideIndex.value = newIndex
+  activeSlide.value = sideMenu.$state.slideShow
+    ? sideMenu.$state.slideShow[newIndex]
+    : 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg'
+  // clearInterval(intervalRef.value)
+  // intervalRef.value = setInterval(UpdateSlide, 1000)
 }
+
+onMounted(() => {
+  intervalRef.value = setInterval(UpdateSlide, 1000)
+})
+
+onBeforeUnmount(() => {
+  clearInterval(intervalRef.value)
+})
 </script>
 
 <template v-model="store">
-  <!-- <aside :class="`${sideMenu.$state.isOpen ? 'isExpanded' : ''}`"> -->
-    <aside class="isExpanded">
-    
-    <!-- <div class="menu-toggle-wrap">
-      <button class="menu-toggle" @click="ToggleMenu">
-        <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
-      </button>
-    </div> -->
-    <!-- How can I ease in and out when content changes? -->
+  <aside class="isExpanded">
     <div class="menu-content" :class="`${sideMenu.$state.id} ease-in-out`">
-      <div class="flex flex-row">
-        <button>
-          <span class="material-symbols-outlined">keyboard_double_arrow_right</span>
+      <div class="flex flex-row w-full">
+        <button class="flex items-center">
+          <span class="material-symbols-outlined">subway</span>
         </button>
-        <h1 class="text-xl font-bold">{{ sideMenu.$state.neighborhood }}</h1>
+        <h1 class="text-xl font-bold pl-2">{{ sideMenu.$state.neighborhood }}</h1>
       </div>
-      
-      <h1 class="text-4xl/loose font-semibold">{{ sideMenu.$state.title }}</h1>
+
+      <div class="flex flex-row items-baseline w-full py-4">
+        <button>
+          <span class="material-symbols-outlined rotate-180" @click="`${$emit('fly', false)}`"
+            >arrow_forward_ios</span
+          >
+        </button>
+        <h1 class="grow text-4xl font-semibold text-center">{{ sideMenu.$state.title }}</h1>
+        <button>
+          <span class="material-symbols-outlined" @click="`${$emit('fly', true)}`"
+            >arrow_forward_ios</span
+          >
+        </button>
+      </div>
+
       <div class="overflow-y-auto">
-      <!-- If menu closed, hide title, description, other media -->
-      <!-- if menu open, set sideMenu params to current-->
+        <p class="text-lg">{{ sideMenu.$state.description }}</p>
 
-      
-      <p class="text-lg">{{ sideMenu.$state.description }}</p>
-
-      <!-- Main Image -->
-      <div class="menu-main-image pt-6 w-full">
-        <img
+        <!-- Main Image -->
+        <div class="menu-main-image pt-6 w-full">
+          <img
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
-        />
+          />
+        </div>
+
+        <!-- Slide Show -->
+        <div class="menu-slideshow w-full relative" @click="`${UpdateSlide()}`">
+          <img :src="`${activeSlide}`" class="pt-6" />
+        </div>
+
+        <!-- Other media, need to loop through sideMenu.$.state.allMedia -->
+        <div class="menu-media pt-6 w-full">
+          <img
+            :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
+            :src="`${sideMenu.$state.url}`"
+          />
+          <iframe
+            :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
+            class="w-full h-3/6"
+            :src="`${sideMenu.$state.url}`"
+            :title="`${sideMenu.$state.title}`"
+            frameborder="1"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allowfullscreen
+          ></iframe>
+          <audio
+            :class="`${sideMenu.$state.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
+            :src="`${sideMenu.$state.url}`"
+          ></audio>
+        </div>
       </div>
-      <!-- Other media-->
-
-      <!-- <div v-for="(item, index) in sideMenu.$state.allMedia!" :key="index" class="menu-media pt-6 w-full">
-        <img
-          :class="`${item.mediaType == 'image' ? 'image-media' : 'hidden'}`"
-          :src="`${item.url}`"
-        />
-        <iframe
-          :class="`${item.mediaType == 'video' ? 'video-media' : 'hidden'}`"
-          class="w-full h-3/6"
-          :src="`${item.url}`"
-          frameborder="1"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <audio
-          :class="`${item.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
-          :src="`${item.url}`"
-        ></audio>
-      </div> -->
-
-      <div class="menu-media pt-6 w-full"> 
-        <img
-          :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
-          :src="`${sideMenu.$state.url}`"
-        />
-        <iframe
-          :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
-          class="w-full h-3/6"
-          :src="`${sideMenu.$state.url}`"
-          :title="`${sideMenu.$state.title}`"
-          frameborder="1"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-          referrerpolicy="strict-origin-when-cross-origin"
-          allowfullscreen
-        ></iframe>
-        <audio
-          :class="`${sideMenu.$state.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
-          :src="`${sideMenu.$state.url}`"
-        ></audio>
-      </div>
-
-    </div>
     </div>
   </aside>
 </template>

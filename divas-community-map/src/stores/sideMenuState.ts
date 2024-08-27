@@ -2,8 +2,8 @@ import { defineStore } from 'pinia'
 
 interface media {
   mediaType: string
-  url: string 
-  caption: string 
+  url: string
+  caption: string
 }
 
 // TODO
@@ -19,6 +19,7 @@ interface SideMenuState {
   description: string
   mediaType: string
   url: string
+  slideShow?: string[]
   allMedia?: media[]
 }
 

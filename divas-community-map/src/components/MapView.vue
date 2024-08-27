@@ -3,6 +3,8 @@
 
 import { Map, type LngLatBoundsLike, NavigationControl } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
+import { ref } from 'vue'
+import { setMapStoreSuffix, storeToRefs } from 'pinia'
 
 // fix bounds around Queens
 const bounds: LngLatBoundsLike | undefined = [
@@ -13,6 +15,80 @@ const bounds: LngLatBoundsLike | undefined = [
 const loremIpsum =
   'Lorem ipsum odor amet, consectetuer adipiscing elit. Curae litora duis potenti elementum quam hac. Mollis fusce nisl purus lacinia tortor posuere rhoncus lacinia. Suscipit nascetur augue molestie faucibus facilisi habitasse. Euismod pellentesque turpis sed iaculis non adipiscing porttitor. Odio venenatis litora montes ad justo hendrerit.'
 
+// define different landmarks here
+// may need a better system where coords are also included
+const landmarks: { [key: number]: any } = {
+  0: {
+    properties: {
+      id: 0,
+      neighborhood: 'New York City',
+      title: 'DIVAS Community Assets',
+      description:
+        'Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?',
+      mediaType: 'image',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg',
+      slideShow: [
+        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
+      ]
+    },
+    coordinates: [-73.742605, 40.676574]
+  },
+  1: {
+    properties: {
+      id: 1,
+      neighborhood: 'Laurelton',
+      title: 'A Live Kitchen',
+      description:
+        "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      mediaType: 'video', // replace these tags?
+      url: 'https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL',
+      slideShow: [
+        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
+      ]
+    },
+    coordinates: [-73.742605, 40.676574]
+  },
+  2: {
+    properties: {
+      id: 2,
+      neighborhood: 'Laurelton',
+      title: 'P.S. 156',
+      description: loremIpsum,
+      mediaType: 'image',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png',
+      slideShow: [
+        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
+      ]
+    },
+    coordinates: [-73.743378, 40.672576]
+  },
+  3: {
+    properties: {
+      id: 3,
+      neighborhood: 'Laurelton',
+      title: 'P.S. 132',
+      description: loremIpsum,
+      mediaType: 'image',
+      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png',
+      slideShow: [
+        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
+        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
+      ]
+    },
+    coordinates: [-73.74959, 40.682273]
+  }
+}
+
+const storeSideMenu = ref()
+const mapRef = ref()
+
 export default {
   mounted() {
     const map: Map = new Map({
@@ -21,28 +97,28 @@ export default {
         'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
-      // minPitch: 45,
-      // maxPitch: 45,
-      zoom: 18, 
-      minZoom: 12, 
+      zoom: 18,
+      minZoom: 12,
       bearing: 0,
-      // dragRotate: false,
-      pitchWithRotate: false
-      // bearingSnap: 360,
-      // maxBounds: bounds
+      pitchWithRotate: false,
+      maplibreLogo: false
     })
 
-    map.addControl(new NavigationControl({
-      showCompass: true,
-      showZoom: true,
-      visualizePitch: true
-    }))
+    storeSideMenu.value = sideMenuStore()
+    mapRef.value = map
+
+    map.addControl(
+      new NavigationControl({
+        showCompass: true,
+        showZoom: true,
+        visualizePitch: true
+      })
+    )
 
     map.on('load', async () => {
       var markerImage = await map.loadImage(
         'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
       )
-      const storeSideMenu = sideMenuStore()
 
       if (!map.hasImage('marker')) map.addImage('marker', markerImage.data)
       else {
@@ -57,48 +133,26 @@ export default {
           features: [
             {
               type: 'Feature',
-              properties: {
-                id: 1,
-                neighborhood: 'Laurelton',
-                title: 'A Live Kitchen',
-                description:
-                  "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
-                mediaType: 'video', // replace these tags?
-                url: 'https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL'
-              },
+              properties: landmarks[1].properties,
               geometry: {
                 type: 'Point',
-                coordinates: [-73.742605, 40.676574]
+                coordinates: landmarks[1].coordinates
               }
             },
             {
               type: 'Feature',
-              properties: {
-                id: 2,
-                neighborhood: 'Laurelton',
-                title: 'P.S. 156',
-                description: loremIpsum,
-                mediaType: 'image',
-                url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png'
-              },
+              properties: landmarks[2].properties,
               geometry: {
                 type: 'Point',
-                coordinates: [-73.743378, 40.672576]
+                coordinates: landmarks[2].coordinates
               }
             },
             {
               type: 'Feature',
-              properties: {
-                id: 3,
-                neighborhood: 'Laurelton',
-                title: 'P.S. 132',
-                description: loremIpsum,
-                mediaType: 'image',
-                url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png'
-              },
+              properties: landmarks[3].properties,
               geometry: {
                 type: 'Point',
-                coordinates: [-73.74959, 40.682273]
+                coordinates: landmarks[3].coordinates
               }
             }
           ]
@@ -120,20 +174,22 @@ export default {
         }
       })
 
-      map.on('mouseenter', 'points', (e: any) => {
+      map.on('click', 'points', (e: any) => {
         // something weird happens when fly to at min zoom
-        map.flyTo({
-          center: e.features[0].geometry.coordinates,
-          zoom: 18
-        })
-        storeSideMenu.$patch({
+        storeSideMenu.value.$patch({
           id: e.features[0].properties.id,
-          neighborhood: e.features[0].properties.neighborhood, 
+          neighborhood: e.features[0].properties.neighborhood,
           isOpen: true,
           title: e.features[0].properties.title,
           description: e.features[0].properties.description,
           mediaType: e.features[0].properties.mediaType,
-          url: e.features[0].properties.url
+          url: e.features[0].properties.url,
+          // slideShow: e.features[0].properties.slideShow // why doesn't this work?
+          slideShow: landmarks[e.features[0].properties.id].properties.slideShow
+        })
+        map.flyTo({
+          center: e.features[0].geometry.coordinates,
+          zoom: 18
         })
       })
 
@@ -145,6 +201,27 @@ export default {
         map.getCanvas().style.cursor = ''
       })
     })
+  },
+  methods: {
+    flyToNextMarker(goNext: boolean) {
+      var newID: number = goNext ? storeSideMenu.value.id + 1 : storeSideMenu.value.id - 1
+      if (newID <= 0) newID = Object.keys(landmarks).length - 1
+      else if (newID >= Object.keys(landmarks).length) newID = 1
+      storeSideMenu.value.$patch({
+        id: landmarks[newID].properties.id,
+        neighborhood: landmarks[newID].properties.neighborhood,
+        isOpen: true,
+        title: landmarks[newID].properties.title,
+        description: landmarks[newID].properties.description,
+        mediaType: landmarks[newID].properties.mediaType,
+        url: landmarks[newID].properties.url,
+        slideShow: landmarks[newID].properties.slideShow
+      })
+      mapRef.value.flyTo({
+        center: landmarks[newID].coordinates,
+        zoom: 18
+      })
+    }
   }
 }
 </script>

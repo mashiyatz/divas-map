@@ -1,12 +1,3 @@
-<script lang="ts">
-import SideMenu from './components/SideMenu.vue'
-import MapView from './components/MapView.vue'
-
-export default {
-  components: { MapView, SideMenu }
-}
-</script>
-
 <style lang="scss">
 :root {
   // make sidebar-width responsive
@@ -34,8 +25,28 @@ export default {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.2/dist/maplibre-gl.css" />
   </head>
-  <SideMenu />
+  <SideMenu ref="menu" @fly="onFly" />
   <div id="layout">
-    <MapView />
+    <MapView ref="mapview" />
   </div>
 </template>
+
+<script lang="ts">
+import SideMenu from './components/SideMenu.vue'
+import MapView from './components/MapView.vue'
+import { ref } from 'vue'
+
+export default {
+  components: { MapView, SideMenu },
+  setup() {
+    const mapview = ref()
+    return { mapview }
+  },
+  methods: {
+    onFly(goNext: boolean) {
+      const mapComponent: any = this.$refs.mapview
+      mapComponent.flyToNextMarker(goNext)
+    }
+  }
+}
+</script>
