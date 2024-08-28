@@ -1,90 +1,16 @@
 <script lang="ts">
-// Following this example: https://maplibre.org/maplibre-gl-js/docs/examples/restrict-bounds/
-
 import { Map, type LngLatBoundsLike, NavigationControl } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
-import { setMapStoreSuffix, storeToRefs } from 'pinia'
+import untypedLandmarks from '../landmarks.json'
+
+const landmarks: { [key: number]: any } = untypedLandmarks
 
 // fix bounds around Queens
 const bounds: LngLatBoundsLike | undefined = [
-  [-74.050696, 40.547044], // Southwest coordinates
-  [-73.817894, 40.721256] // Northeast coordinates
+  [-74.4207, 40.38369], // Southwest coordinates
+  [-73.165512, 41.11609] // Northeast coordinates
 ]
-
-const loremIpsum =
-  'Lorem ipsum odor amet, consectetuer adipiscing elit. Curae litora duis potenti elementum quam hac. Mollis fusce nisl purus lacinia tortor posuere rhoncus lacinia. Suscipit nascetur augue molestie faucibus facilisi habitasse. Euismod pellentesque turpis sed iaculis non adipiscing porttitor. Odio venenatis litora montes ad justo hendrerit.'
-
-// define different landmarks here
-// may need a better system where coords are also included
-const landmarks: { [key: number]: any } = {
-  0: {
-    properties: {
-      id: 0,
-      neighborhood: 'New York City',
-      title: 'DIVAS Community Assets',
-      description:
-        'Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?',
-      mediaType: 'image',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg',
-      slideShow: [
-        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
-      ]
-    },
-    coordinates: [-73.742605, 40.676574]
-  },
-  1: {
-    properties: {
-      id: 1,
-      neighborhood: 'Laurelton',
-      title: 'A Live Kitchen',
-      description:
-        "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
-      mediaType: 'video', // replace these tags?
-      url: 'https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL',
-      slideShow: [
-        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
-      ]
-    },
-    coordinates: [-73.742605, 40.676574]
-  },
-  2: {
-    properties: {
-      id: 2,
-      neighborhood: 'Laurelton',
-      title: 'P.S. 156',
-      description: loremIpsum,
-      mediaType: 'image',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png',
-      slideShow: [
-        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
-      ]
-    },
-    coordinates: [-73.743378, 40.672576]
-  },
-  3: {
-    properties: {
-      id: 3,
-      neighborhood: 'Laurelton',
-      title: 'P.S. 132',
-      description: loremIpsum,
-      mediaType: 'image',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png',
-      slideShow: [
-        'https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg',
-        'https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg'
-      ]
-    },
-    coordinates: [-73.74959, 40.682273]
-  }
-}
 
 const storeSideMenu = ref()
 const mapRef = ref()
@@ -101,7 +27,8 @@ export default {
       minZoom: 12,
       bearing: 0,
       pitchWithRotate: false,
-      maplibreLogo: false
+      maplibreLogo: false,
+      maxBounds: bounds
     })
 
     storeSideMenu.value = sideMenuStore()
@@ -174,24 +101,7 @@ export default {
         }
       })
 
-      map.on('click', 'points', (e: any) => {
-        // something weird happens when fly to at min zoom
-        storeSideMenu.value.$patch({
-          id: e.features[0].properties.id,
-          neighborhood: e.features[0].properties.neighborhood,
-          isOpen: true,
-          title: e.features[0].properties.title,
-          description: e.features[0].properties.description,
-          mediaType: e.features[0].properties.mediaType,
-          url: e.features[0].properties.url,
-          // slideShow: e.features[0].properties.slideShow // why doesn't this work?
-          slideShow: landmarks[e.features[0].properties.id].properties.slideShow
-        })
-        map.flyTo({
-          center: e.features[0].geometry.coordinates,
-          zoom: 18
-        })
-      })
+      map.on('click', 'points', (e) => this.flyToSelectedMarker(e.features![0]))
 
       map.on('mouseenter', 'points', () => {
         map.getCanvas().style.cursor = 'pointer'
@@ -203,6 +113,22 @@ export default {
     })
   },
   methods: {
+    flyToSelectedMarker(event: any) {
+      storeSideMenu.value.$patch({
+        id: event.properties.id,
+        neighborhood: event.properties.neighborhood,
+        title: event.properties.title,
+        description: event.properties.description,
+        mediaType: event.properties.mediaType,
+        url: event.properties.url,
+        slideShow: landmarks[event.properties.id].properties.slideShow
+        // slideShow: event.properties.slideShow // why doesn't this work?
+      })
+      mapRef.value.flyTo({
+        center: event.geometry.coordinates,
+        zoom: 18
+      })
+    },
     flyToNextMarker(goNext: boolean) {
       var newID: number = goNext ? storeSideMenu.value.id + 1 : storeSideMenu.value.id - 1
       if (newID <= 0) newID = Object.keys(landmarks).length - 1
@@ -210,7 +136,6 @@ export default {
       storeSideMenu.value.$patch({
         id: landmarks[newID].properties.id,
         neighborhood: landmarks[newID].properties.neighborhood,
-        isOpen: true,
         title: landmarks[newID].properties.title,
         description: landmarks[newID].properties.description,
         mediaType: landmarks[newID].properties.mediaType,
@@ -219,6 +144,22 @@ export default {
       })
       mapRef.value.flyTo({
         center: landmarks[newID].coordinates,
+        zoom: 18
+      })
+    },
+    changeToNeighborhood(name: string) {
+      var landmark = Object.values(landmarks).find((x) => x.properties.neighborhood === name)
+      storeSideMenu.value.$patch({
+        id: landmark.properties.id,
+        neighborhood: landmark.properties.neighborhood,
+        title: landmark.properties.title,
+        description: landmark.properties.description,
+        mediaType: landmark.properties.mediaType,
+        url: landmark.properties.url,
+        slideShow: landmark.properties.slideShow
+      })
+      mapRef.value.flyTo({
+        center: landmark.coordinates,
         zoom: 18
       })
     }
@@ -240,10 +181,11 @@ export default {
 </template>
 
 <!-- 
-  See: https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#addsource
-  See: https://maplibre.org/maplibre-style-spec/sources/#image
-  See: https://maplibre.org/maplibre-gl-js/docs/examples/multiple-geometries/
-  Example: https://jsfiddle.net/oh8Ld1ry/1/
-  Discussion: https://github.com/mapbox/mapbox-gl-js/issues/4736
-  Discussion: https://stackoverflow.com/questions/66210679/mapbox-gl-js-how-to-add-multiple-photo-sources-on-a-single-layer
+MapLibre API:  
+  - https://maplibre.org/maplibre-gl-js/docs/API/classes/Map/#addsource
+  - https://maplibre.org/maplibre-style-spec/sources/#image
+  - https://maplibre.org/maplibre-gl-js/docs/examples/multiple-geometries/
+  - https://jsfiddle.net/oh8Ld1ry/1/
+  - https://github.com/mapbox/mapbox-gl-js/issues/4736
+  - https://stackoverflow.com/questions/66210679/mapbox-gl-js-how-to-add-multiple-photo-sources-on-a-single-layer
 -->

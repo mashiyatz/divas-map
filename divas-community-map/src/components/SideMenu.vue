@@ -13,47 +13,36 @@ aside {
   transition: 0.2s ease-out;
   z-index: 99;
 
+  width: var(--sidebar-width);
+
   .menu-content {
-    display: none;
-  }
-
-  &.isExpanded {
-    width: var(--sidebar-width);
-
-    .menu-toggle-wrap {
-      .menu-toggle {
-        transform: scaleX(-1);
-      }
-    }
-
-    .menu-content {
-      display: flex;
-      flex-direction: column;
-      width: 100%;
-      top: -4rem;
-      height: 100%;
-    }
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    top: -4rem;
+    height: 100%;
   }
 }
 </style>
 
 <script setup lang="ts">
 import { sideMenuStore } from '@/stores/sideMenuState'
-import { supported } from 'mapbox-gl'
+import { neighborhoodStore } from '@/stores/neighborhoodState'
 import { onBeforeUnmount } from 'vue'
 import { onMounted } from 'vue'
-import { onBeforeMount } from 'vue'
 import { ref } from 'vue'
 
 const sideMenu = sideMenuStore()
+const neighborhoods = neighborhoodStore()
 const activeSlideIndex = ref(0)
 const activeSlide = ref('')
 const intervalRef = ref()
 
 const UpdateSlide = () => {
   var newIndex = activeSlideIndex.value + 1
+
+  // exit function if slideShow doesn't exist?
   if (newIndex >= sideMenu.$state.slideShow?.length) newIndex = 0
-  console.log(sideMenu.$state.slideShow?.length)
   activeSlideIndex.value = newIndex
   activeSlide.value = sideMenu.$state.slideShow
     ? sideMenu.$state.slideShow[newIndex]
@@ -72,13 +61,27 @@ onBeforeUnmount(() => {
 </script>
 
 <template v-model="store">
-  <aside class="isExpanded">
+  <aside>
     <div class="menu-content" :class="`${sideMenu.$state.id} ease-in-out`">
-      <div class="flex flex-row w-full">
-        <button class="flex items-center">
+      <div id="neighborhood" class="flex flex-row w-full items-center">
+        <!-- consider adding horizontal scrolling -->
+        <div class="flex items-center">
           <span class="material-symbols-outlined">subway</span>
-        </button>
-        <h1 class="text-xl font-bold pl-2">{{ sideMenu.$state.neighborhood }}</h1>
+          <h1 class="text-xl font-bold pl-2">{{ sideMenu.$state.neighborhood }}</h1>
+          <button
+            class="flex items-center opacity-50 transition ease-in-out duration-500 hover:opacity-100"
+            v-for="(item, key) in neighborhoods.$state.neighborhoodList.filter(
+              (x) => x != sideMenu.$state.neighborhood
+            )"
+            :key="key"
+            @click="`${$emit('travel', item)}`"
+          >
+            <span class="material-symbols-outlined"> arrow_right </span>
+            <h1 class="text-xl font-bold">
+              {{ item }}
+            </h1>
+          </button>
+        </div>
       </div>
 
       <div class="flex flex-row items-baseline w-full py-4">
@@ -99,7 +102,7 @@ onBeforeUnmount(() => {
         <p class="text-lg">{{ sideMenu.$state.description }}</p>
 
         <!-- Main Image -->
-        <div class="menu-main-image pt-6 w-full">
+        <div id="menu-main-img" class="pt-6 w-full">
           <img
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
@@ -107,19 +110,19 @@ onBeforeUnmount(() => {
         </div>
 
         <!-- Slide Show -->
-        <div class="menu-slideshow w-full relative" @click="`${UpdateSlide()}`">
-          <img :src="`${activeSlide}`" class="pt-6" />
+        <div id="menu-slideshow" class="w-full h-2/5" @click="`${UpdateSlide()}`">
+          <img :src="`${activeSlide}`" class="pt-6 w-full h-full object-cover" />
         </div>
 
         <!-- Other media, need to loop through sideMenu.$.state.allMedia -->
-        <div class="menu-media pt-6 w-full">
+        <div id="menu-media" class="pt-6 w-full h-96">
           <img
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
           />
           <iframe
             :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
-            class="w-full h-3/6"
+            class="w-full h-full"
             :src="`${sideMenu.$state.url}`"
             :title="`${sideMenu.$state.title}`"
             frameborder="1"

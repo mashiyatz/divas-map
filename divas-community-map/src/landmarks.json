@@ -1,0 +1,66 @@
+{
+  "0": {
+    "properties": {
+      "id": 0,
+      "neighborhood": "New York City",
+      "title": "DIVAS Community Assets",
+      "description": "Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?",
+      "mediaType": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg",
+      "slideShow": [
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+      ]
+    },
+    "coordinates": [-73.742605, 40.676574]
+  },
+  "1": {
+    "properties": {
+      "id": 1,
+      "neighborhood": "Laurelton",
+      "title": "A Live Kitchen",
+      "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      "mediaType": "video",
+      "url": "https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL",
+      "slideShow": [
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+      ]
+    },
+    "coordinates": [-73.742605, 40.676574]
+  },
+  "2": {
+    "properties": {
+      "id": 2,
+      "neighborhood": "Laurelton",
+      "title": "P.S. 156",
+      "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      "mediaType": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png",
+      "slideShow": [
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+      ]
+    },
+    "coordinates": [-73.743378, 40.672576]
+  },
+  "3": {
+    "properties": {
+      "id": 3,
+      "neighborhood": "Laurelton",
+      "title": "P.S. 132",
+      "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      "mediaType": "image",
+      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png",
+      "slideShow": [
+        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
+        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+      ]
+    },
+    "coordinates": [-73.74959, 40.682273]
+  }
+}

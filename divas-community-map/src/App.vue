@@ -25,7 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.2/dist/maplibre-gl.css" />
   </head>
-  <SideMenu ref="menu" @fly="onFly" />
+  <SideMenu ref="menu" @fly="onFly" @travel="onChangeNeighborhood" />
   <div id="layout">
     <MapView ref="mapview" />
   </div>
@@ -46,6 +46,10 @@ export default {
     onFly(goNext: boolean) {
       const mapComponent: any = this.$refs.mapview
       mapComponent.flyToNextMarker(goNext)
+    },
+    onChangeNeighborhood(neighborhood: string) {
+      const mapComponent: any = this.$refs.mapview
+      mapComponent.changeToNeighborhood(neighborhood)
     }
   }
 }
