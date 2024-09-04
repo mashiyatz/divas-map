@@ -1,8 +1,9 @@
 <script lang="ts">
-import { Map, type LngLatBoundsLike, NavigationControl } from 'maplibre-gl'
+import { Map, type LngLatBoundsLike, NavigationControl, type Feature } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
+import { arrayBuffer } from 'stream/consumers'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
@@ -52,37 +53,93 @@ export default {
         map.removeImage('marker')
         map.addImage('marker', markerImage.data)
       }
+
+      // const features = new Array(Object.keys(landmarks).length).fill({
+      //   type: 'Feature',
+      //   properties: {},
+      //   geometry: {
+      //     type: 'Point',
+      //     coordinates: []
+      //   }
+      // })
+
+      const features = Object.values(landmarks).map((landmark) => {
+        return {
+          type: 'Feature',
+          properties: landmark.properties,
+          geometry: {
+            type: 'Point',
+            coordinates: landmark.coordinates
+          }
+        }
+      })
+
+      console.log(features)
+
       map.addSource('point', {
         // can generate object with all relevant information, then search that object within properties
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
-          features: [
-            {
-              type: 'Feature',
-              properties: landmarks[1].properties,
-              geometry: {
-                type: 'Point',
-                coordinates: landmarks[1].coordinates
-              }
-            },
-            {
-              type: 'Feature',
-              properties: landmarks[2].properties,
-              geometry: {
-                type: 'Point',
-                coordinates: landmarks[2].coordinates
-              }
-            },
-            {
-              type: 'Feature',
-              properties: landmarks[3].properties,
-              geometry: {
-                type: 'Point',
-                coordinates: landmarks[3].coordinates
-              }
-            }
-          ]
+          features: features
+          // [
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[1].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[1].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[2].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[2].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[3].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[3].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[4].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[4].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[5].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[5].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[6].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[6].coordinates
+          //     }
+          //   },
+          //   {
+          //     type: 'Feature',
+          //     properties: landmarks[7].properties,
+          //     geometry: {
+          //       type: 'Point',
+          //       coordinates: landmarks[7].coordinates
+          //     }
+          //   }
+          // ]
         }
       })
 

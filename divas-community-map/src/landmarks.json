@@ -5,7 +5,7 @@
       "neighborhood": "New York City",
       "title": "DIVAS Community Assets",
       "description": "Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?",
-      "mediaType": "image",
+      "mediaType": "video",
       "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg",
       "slideShow": [
         "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
@@ -22,11 +22,10 @@
       "title": "A Live Kitchen",
       "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
       "mediaType": "video",
-      "url": "https://www.youtube.com/embed/UQUPEPOfczk?si=CWK09YE0ZtS5ngaL",
+      "url": "src/assets/files/Laurelton/Asset_ALIVEKitchen/STEAM_ALiveKitchen_20240505.mp4",
       "slideShow": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+        "src/assets/files/Laurelton/Asset_ALIVEKitchen/001_kitchenQueens_DSC00432.jpg",
+        "src/assets/files/Laurelton/Asset_ALIVEKitchen/002_kitchenQueens_IMG_4267.jpg"
       ]
     },
     "coordinates": [-73.742605, 40.676574]
@@ -36,13 +35,13 @@
       "id": 2,
       "neighborhood": "Laurelton",
       "title": "P.S. 156",
-      "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
       "mediaType": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png",
+      "url": "",
       "slideShow": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+        "src/assets/files/Laurelton/Asset_P.156/001_p156Queens_IMG_4307.jpg",
+        "src/assets/files/Laurelton/Asset_P.156/002_p156Queens_IMG_4329.jpg",
+        "src/assets/files/Laurelton/Asset_P.156/003_p156Queens_IMG_4313.jpg"
       ]
     },
     "coordinates": [-73.743378, 40.672576]
@@ -52,15 +51,91 @@
       "id": 3,
       "neighborhood": "Laurelton",
       "title": "P.S. 132",
-      "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
+      "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
       "mediaType": "image",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/b/b1/Laurelton_228at138.png",
+      "url": "",
       "slideShow": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
+        "src/assets/files/Laurelton/Asset_P.132/001_p132Queens_DSC01463.jpg",
+        "src/assets/files/Laurelton/Asset_P.132/002_p132Queens_DSC01464.jpg"
       ]
     },
     "coordinates": [-73.74959, 40.682273]
+  },
+  "4": {
+    "properties": {
+      "id": 4,
+      "neighborhood": "Laurelton",
+      "title": "Linden SDA School",
+      "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
+      "mediaType": "image",
+      "url": "",
+      "slideShow": [
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/001_auditQueens_DSC01324.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/002_auditQueens_IMG_3949.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/003_auditQueens_DSC00513.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/004_auditQueens_DSC01334.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/005_auditQueens_IMG_3952.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/006_auditQueens_DSC00440.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/007_auditQueens_DSC00434.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/008_auditQueens_DSC00432.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/009_auditQueens_DSC00495.jpg",
+        "src/assets/files/Laurelton/Audit_SDA_Linden_School/010_auditQueens_DSC00485.jpg"
+      ]
+    },
+    "coordinates": [-73.744075, 40.672916]
+  },
+  "5": {
+    "properties": {
+      "id": 5,
+      "neighborhood": "Laurelton",
+      "title": "The UPS Store",
+      "description": "Students from the Linden SDA School interviewed Brandon Phillips of the UPS Store. The UPS Store makes a concerted effort to hire people that live in the neighborhood, which pours into the community.",
+      "mediaType": "video",
+      "url": "src/assets/files/Laurelton/Asset_UPS_Store/the_anti-gun_violence_asset_mapping_project_the_ups_store.mp4",
+      "slideShow": ["src/assets/files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"]
+    },
+    "coordinates": [-73.740568, 40.676478]
+  },
+  "6": {
+    "properties": {
+      "id": 6,
+      "neighborhood": "East New York",
+      "title": "Williams Avenue Community Garden",
+      "description": "",
+      "mediaType": "image",
+      "url": "",
+      "slideShow": [
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/001_WilliamsAveGardenBrklyn_IMG_0054.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/002_WilliamsAveGardenBrklyn_IMG_0312.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/003_WilliamsAveGardenBrklyn_IMG_0072.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/004_WilliamsAveGardenBrklyn_IMG_0071.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/005_WilliamsAveGardenBrklyn_IMG_0069.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/006_WilliamsAveGardenBrklyn_IMG_0052.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/007_WilliamsAveGardenBrklyn_IMG_0070.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/008_WilliamsAveGardenBrklyn_IMG_0074.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/009_WilliamsAveGardenBrklyn_IMG_0053.jpg",
+        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/010_WilliamsAveGardenBrklyn_IMG_0049.jpg"
+      ]
+    },
+    "coordinates": [-73.900554, 40.674274]
+  },
+  "7": {
+    "properties": {
+      "id": 7,
+      "neighborhood": "Hunts Point",
+      "title": "Edenwald Houses",
+      "description": "",
+      "mediaType": "video",
+      "url": "https://youtu.be/6akxixWi1Bc?si=8HIWHct8zTW0LuMA",
+      "slideShow": [
+        "src/assets/files/TheBronx/Asset_MMCC/001_MMCCBronx_MMCC_IMG_3192.jpg",
+        "src/assets/files/TheBronx/Asset_MMCC/002_MMCCBronx_MMCC_9D8EDE82-D1B7-4499-9DB2-296ADF0DC66D.jpg",
+        "src/assets/files/TheBronx/Asset_MMCC/003_MMCCBronx_MMCC_53F9E20F-4937-4242-A917-4A83A2F13472.jpg",
+        "src/assets/files/TheBronx/Asset_MMCC/004_MMCCBronx_MMCC_IMG_3193.jpg",
+        "src/assets/files/TheBronx/Asset_MMCC/005_MMCCBronx_MMCC_30FEAE80-3F9A-46F5-AD99-FFB76A3836E6.jpg",
+        "src/assets/files/TheBronx/Asset_MMCC/006_MMCCBronx_MMCC_BA2D2810-0379-4C1A-8A35-037C0E7EDAEE.jpg"
+      ]
+    },
+    "coordinates": [-73.842941, 40.884541]
   }
 }

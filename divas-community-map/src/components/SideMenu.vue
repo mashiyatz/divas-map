@@ -44,9 +44,7 @@ const UpdateSlide = () => {
   // exit function if slideShow doesn't exist?
   if (newIndex >= sideMenu.$state.slideShow?.length) newIndex = 0
   activeSlideIndex.value = newIndex
-  activeSlide.value = sideMenu.$state.slideShow
-    ? sideMenu.$state.slideShow[newIndex]
-    : 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg'
+  activeSlide.value = sideMenu.$state.slideShow ? sideMenu.$state.slideShow[newIndex] : ''
   // clearInterval(intervalRef.value)
   // intervalRef.value = setInterval(UpdateSlide, 1000)
 }
@@ -62,12 +60,14 @@ onBeforeUnmount(() => {
 
 <template v-model="store">
   <aside>
+    <!-- Potentially don't need id if ease-in-out doesn't work -->
     <div class="menu-content" :class="`${sideMenu.$state.id} ease-in-out`">
       <div id="neighborhood" class="flex flex-row w-full items-center">
-        <!-- consider adding horizontal scrolling -->
         <div class="flex items-center">
           <span class="material-symbols-outlined">subway</span>
           <h1 class="text-xl font-bold pl-2">{{ sideMenu.$state.neighborhood }}</h1>
+
+          <!-- consider adding horizontal scrolling for the other neighborhood options-->
           <button
             class="flex items-center opacity-50 transition ease-in-out duration-500 hover:opacity-100"
             v-for="(item, key) in neighborhoods.$state.neighborhoodList.filter(
