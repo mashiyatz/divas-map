@@ -3,7 +3,6 @@ import { Map, type LngLatBoundsLike, NavigationControl, type Feature } from 'map
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
-import { arrayBuffer } from 'stream/consumers'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
@@ -24,7 +23,7 @@ export default {
         'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
-      zoom: 18,
+      zoom: 12,
       minZoom: 12,
       bearing: 0,
       pitchWithRotate: false,
@@ -45,7 +44,8 @@ export default {
 
     map.on('load', async () => {
       var markerImage = await map.loadImage(
-        'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
+        //'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
+        'src/assets/DIVASHighlightCoverHeal.png'
       )
 
       if (!map.hasImage('marker')) map.addImage('marker', markerImage.data)
@@ -53,15 +53,6 @@ export default {
         map.removeImage('marker')
         map.addImage('marker', markerImage.data)
       }
-
-      // const features = new Array(Object.keys(landmarks).length).fill({
-      //   type: 'Feature',
-      //   properties: {},
-      //   geometry: {
-      //     type: 'Point',
-      //     coordinates: []
-      //   }
-      // })
 
       const features = Object.values(landmarks).map((landmark) => {
         return {
@@ -74,79 +65,31 @@ export default {
         }
       })
 
-      console.log(features)
-
       map.addSource('point', {
-        // can generate object with all relevant information, then search that object within properties
         type: 'geojson',
         data: {
           type: 'FeatureCollection',
           features: features
-          // [
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[1].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[1].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[2].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[2].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[3].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[3].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[4].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[4].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[5].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[5].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[6].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[6].coordinates
-          //     }
-          //   },
-          //   {
-          //     type: 'Feature',
-          //     properties: landmarks[7].properties,
-          //     geometry: {
-          //       type: 'Point',
-          //       coordinates: landmarks[7].coordinates
-          //     }
-          //   }
-          // ]
-        }
+        },
+        cluster: false
       })
+
+      // map.addLayer({
+      //   id: 'cluster-point',
+      //   type: 'symbol',
+      //   source: 'point',
+      //   filter: ['has', 'point_count'],
+      //   layout: {
+      //     'icon-image': 'marker',
+      //     'icon-size': 0.1
+      //   }
+      // })
 
       map.addLayer({
         id: 'points',
         type: 'symbol',
         source: 'point',
+        filter: ['!', ['has', 'point_count']],
         layout: {
           'text-field': ['get', 'title'],
           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
@@ -154,7 +97,8 @@ export default {
           'text-justify': 'auto',
           'text-size': 24,
           'icon-image': 'marker',
-          'icon-size': 0.5
+          'icon-size': 0.1,
+          'icon-allow-overlap': true
         }
       })
 
@@ -171,9 +115,11 @@ export default {
   },
   methods: {
     flyToSelectedMarker(event: any) {
+      this.$emit('openMenu')
       storeSideMenu.value.$patch({
         id: event.properties.id,
         neighborhood: event.properties.neighborhood,
+        borough: event.properties.borough,
         title: event.properties.title,
         description: event.properties.description,
         mediaType: event.properties.mediaType,
@@ -187,12 +133,14 @@ export default {
       })
     },
     flyToNextMarker(goNext: boolean) {
+      this.$emit('openMenu')
       var newID: number = goNext ? storeSideMenu.value.id + 1 : storeSideMenu.value.id - 1
       if (newID <= 0) newID = Object.keys(landmarks).length - 1
       else if (newID >= Object.keys(landmarks).length) newID = 1
       storeSideMenu.value.$patch({
         id: landmarks[newID].properties.id,
         neighborhood: landmarks[newID].properties.neighborhood,
+        borough: landmarks[newID].properties.borough,
         title: landmarks[newID].properties.title,
         description: landmarks[newID].properties.description,
         mediaType: landmarks[newID].properties.mediaType,
@@ -205,10 +153,12 @@ export default {
       })
     },
     changeToNeighborhood(name: string) {
+      this.$emit('openMenu')
       var landmark = Object.values(landmarks).find((x) => x.properties.neighborhood === name)
       storeSideMenu.value.$patch({
         id: landmark.properties.id,
         neighborhood: landmark.properties.neighborhood,
+        borough: landmark.properties.borough,
         title: landmark.properties.title,
         description: landmark.properties.description,
         mediaType: landmark.properties.mediaType,
@@ -218,6 +168,11 @@ export default {
       mapRef.value.flyTo({
         center: landmark.coordinates,
         zoom: 18
+      })
+    },
+    resetToHome() {
+      mapRef.value.flyTo({
+        zoom: 12
       })
     }
   }

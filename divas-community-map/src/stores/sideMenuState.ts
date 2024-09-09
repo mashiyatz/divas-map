@@ -14,6 +14,7 @@ interface media {
 interface SideMenuState {
   id: number
   neighborhood?: string
+  borough?: string
   title: string
   description: string
   mediaType: string

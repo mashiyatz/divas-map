@@ -2,23 +2,8 @@
   "0": {
     "properties": {
       "id": 0,
-      "neighborhood": "New York City",
-      "title": "DIVAS Community Assets",
-      "description": "Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?",
-      "mediaType": "video",
-      "url": "https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg",
-      "slideShow": [
-        "https://upload.wikimedia.org/wikipedia/commons/9/9f/New_York_City_%28New_York%2C_USA%29%2C_Central_Park_--_2012_--_6731.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/7/7a/New_York_City_%28New_York%2C_USA%29%2C_Brooklyn_Bridge_--_2012_--_6630.jpg",
-        "https://upload.wikimedia.org/wikipedia/commons/4/4b/Seagull%2C_Liberty_Island%2C_New_York_City%2C_20231003_1521_1980.jpg"
-      ]
-    },
-    "coordinates": [-73.742605, 40.676574]
-  },
-  "1": {
-    "properties": {
-      "id": 1,
       "neighborhood": "Laurelton",
+      "borough": "Queens",
       "title": "A Live Kitchen",
       "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
       "mediaType": "video",
@@ -30,10 +15,11 @@
     },
     "coordinates": [-73.742605, 40.676574]
   },
-  "2": {
+  "1": {
     "properties": {
-      "id": 2,
+      "id": 1,
       "neighborhood": "Laurelton",
+      "borough": "Queens",
       "title": "P.S. 156",
       "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
       "mediaType": "image",
@@ -46,10 +32,11 @@
     },
     "coordinates": [-73.743378, 40.672576]
   },
-  "3": {
+  "2": {
     "properties": {
-      "id": 3,
+      "id": 2,
       "neighborhood": "Laurelton",
+      "borough": "Queens",
       "title": "P.S. 132",
       "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
       "mediaType": "image",
@@ -61,10 +48,11 @@
     },
     "coordinates": [-73.74959, 40.682273]
   },
-  "4": {
+  "3": {
     "properties": {
-      "id": 4,
+      "id": 3,
       "neighborhood": "Laurelton",
+      "borough": "Queens",
       "title": "Linden SDA School",
       "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun. Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
       "mediaType": "image",
@@ -84,10 +72,11 @@
     },
     "coordinates": [-73.744075, 40.672916]
   },
-  "5": {
+  "4": {
     "properties": {
-      "id": 5,
+      "id": 4,
       "neighborhood": "Laurelton",
+      "borough": "Queens",
       "title": "The UPS Store",
       "description": "Students from the Linden SDA School interviewed Brandon Phillips of the UPS Store. The UPS Store makes a concerted effort to hire people that live in the neighborhood, which pours into the community.",
       "mediaType": "video",
@@ -96,10 +85,11 @@
     },
     "coordinates": [-73.740568, 40.676478]
   },
-  "6": {
+  "5": {
     "properties": {
-      "id": 6,
+      "id": 5,
       "neighborhood": "East New York",
+      "borough": "Brooklyn",
       "title": "Williams Avenue Community Garden",
       "description": "",
       "mediaType": "image",
@@ -119,10 +109,11 @@
     },
     "coordinates": [-73.900554, 40.674274]
   },
-  "7": {
+  "6": {
     "properties": {
-      "id": 7,
+      "id": 6,
       "neighborhood": "Hunts Point",
+      "borough": "The Bronx",
       "title": "Edenwald Houses",
       "description": "",
       "mediaType": "video",

@@ -25,22 +25,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.2/dist/maplibre-gl.css" />
   </head>
+  <SplashScreen ref="splash" @home="onHome" />
   <SideMenu ref="menu" @fly="onFly" @travel="onChangeNeighborhood" />
   <div id="layout">
-    <MapView ref="mapview" />
+    <MapView ref="mapview" @openMenu="onOpenMenu" />
   </div>
 </template>
 
 <script lang="ts">
 import SideMenu from './components/SideMenu.vue'
 import MapView from './components/MapView.vue'
+import SplashScreen from './components/SplashScreen.vue'
 import { ref } from 'vue'
 
 export default {
-  components: { MapView, SideMenu },
+  components: { MapView, SideMenu, SplashScreen },
   setup() {
     const mapview = ref()
-    return { mapview }
+    const menu = ref()
+    const splash = ref()
+    return { mapview, menu, splash }
   },
   methods: {
     onFly(goNext: boolean) {
@@ -50,6 +54,16 @@ export default {
     onChangeNeighborhood(neighborhood: string) {
       const mapComponent: any = this.$refs.mapview
       mapComponent.changeToNeighborhood(neighborhood)
+    },
+    onHome() {
+      const mapComponent: any = this.$refs.mapview
+      const menuComponent: any = this.$refs.menu
+      mapComponent.resetToHome()
+      menuComponent.toggleMenu(false)
+    },
+    onOpenMenu() {
+      const menuComponent: any = this.$refs.menu
+      menuComponent.toggleMenu(true)
     }
   }
 }
