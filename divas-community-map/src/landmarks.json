@@ -9,8 +9,8 @@
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/UQUPEPOfczk?si=qEJFeH0sTKo8Y0-o",
       "slideShow": [
-        "src/assets/files/Laurelton/Asset_ALIVEKitchen/001_kitchenQueens_DSC00432.jpg",
-        "src/assets/files/Laurelton/Asset_ALIVEKitchen/002_kitchenQueens_IMG_4267.jpg"
+        "files/Laurelton/Asset_ALIVEKitchen/001_kitchenQueens_DSC00432.jpg",
+        "files/Laurelton/Asset_ALIVEKitchen/002_kitchenQueens_IMG_4267.jpg"
       ]
     },
     "coordinates": [-73.742605, 40.676574]
@@ -25,9 +25,9 @@
       "mediaType": "image",
       "url": "",
       "slideShow": [
-        "src/assets/files/Laurelton/Asset_P.156/001_p156Queens_IMG_4307.jpg",
-        "src/assets/files/Laurelton/Asset_P.156/002_p156Queens_IMG_4329.jpg",
-        "src/assets/files/Laurelton/Asset_P.156/003_p156Queens_IMG_4313.jpg"
+        "files/Laurelton/Asset_P.156/001_p156Queens_IMG_4307.jpg",
+        "files/Laurelton/Asset_P.156/002_p156Queens_IMG_4329.jpg",
+        "files/Laurelton/Asset_P.156/003_p156Queens_IMG_4313.jpg"
       ]
     },
     "coordinates": [-73.743378, 40.672576]
@@ -42,8 +42,8 @@
       "mediaType": "image",
       "url": "",
       "slideShow": [
-        "src/assets/files/Laurelton/Asset_P.132/001_p132Queens_DSC01463.jpg",
-        "src/assets/files/Laurelton/Asset_P.132/002_p132Queens_DSC01464.jpg"
+        "files/Laurelton/Asset_P.132/001_p132Queens_DSC01463.jpg",
+        "files/Laurelton/Asset_P.132/002_p132Queens_DSC01464.jpg"
       ]
     },
     "coordinates": [-73.74959, 40.682273]
@@ -58,16 +58,16 @@
       "mediaType": "image",
       "url": "",
       "slideShow": [
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/001_auditQueens_DSC01324.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/002_auditQueens_IMG_3949.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/003_auditQueens_DSC00513.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/004_auditQueens_DSC01334.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/005_auditQueens_IMG_3952.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/006_auditQueens_DSC00440.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/007_auditQueens_DSC00434.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/008_auditQueens_DSC00432.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/009_auditQueens_DSC00495.jpg",
-        "src/assets/files/Laurelton/Audit_SDA_Linden_School/010_auditQueens_DSC00485.jpg"
+        "files/Laurelton/Audit_SDA_Linden_School/001_auditQueens_DSC01324.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/002_auditQueens_IMG_3949.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/003_auditQueens_DSC00513.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/004_auditQueens_DSC01334.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/005_auditQueens_IMG_3952.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/006_auditQueens_DSC00440.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/007_auditQueens_DSC00434.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/008_auditQueens_DSC00432.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/009_auditQueens_DSC00495.jpg",
+        "files/Laurelton/Audit_SDA_Linden_School/010_auditQueens_DSC00485.jpg"
       ]
     },
     "coordinates": [-73.744075, 40.672916]
@@ -81,7 +81,7 @@
       "description": "Students from the Linden SDA School interviewed Brandon Phillips of the UPS Store. The UPS Store makes a concerted effort to hire people that live in the neighborhood, which pours into the community.",
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/Hz_PGKR6bf4?si=Dlse2kX5BaH2k455",
-      "slideShow": ["src/assets/files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"]
+      "slideShow": ["files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"]
     },
     "coordinates": [-73.740568, 40.676478]
   },
@@ -95,16 +95,16 @@
       "mediaType": "image",
       "url": "",
       "slideShow": [
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/001_WilliamsAveGardenBrklyn_IMG_0054.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/002_WilliamsAveGardenBrklyn_IMG_0312.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/003_WilliamsAveGardenBrklyn_IMG_0072.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/004_WilliamsAveGardenBrklyn_IMG_0071.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/005_WilliamsAveGardenBrklyn_IMG_0069.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/006_WilliamsAveGardenBrklyn_IMG_0052.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/007_WilliamsAveGardenBrklyn_IMG_0070.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/008_WilliamsAveGardenBrklyn_IMG_0074.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/009_WilliamsAveGardenBrklyn_IMG_0053.jpg",
-        "src/assets/files/EastNewYork/Asset_WilliamsAveCommGarden/010_WilliamsAveGardenBrklyn_IMG_0049.jpg"
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/001_WilliamsAveGardenBrklyn_IMG_0054.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/002_WilliamsAveGardenBrklyn_IMG_0312.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/003_WilliamsAveGardenBrklyn_IMG_0072.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/004_WilliamsAveGardenBrklyn_IMG_0071.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/005_WilliamsAveGardenBrklyn_IMG_0069.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/006_WilliamsAveGardenBrklyn_IMG_0052.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/007_WilliamsAveGardenBrklyn_IMG_0070.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/008_WilliamsAveGardenBrklyn_IMG_0074.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/009_WilliamsAveGardenBrklyn_IMG_0053.jpg",
+        "files/EastNewYork/Asset_WilliamsAveCommGarden/010_WilliamsAveGardenBrklyn_IMG_0049.jpg"
       ]
     },
     "coordinates": [-73.900554, 40.674274]
@@ -119,12 +119,12 @@
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/6akxixWi1Bc?si=kCFbSKhbx4VsXWOv",
       "slideShow": [
-        "src/assets/files/TheBronx/Asset_MMCC/001_MMCCBronx_MMCC_IMG_3192.jpg",
-        "src/assets/files/TheBronx/Asset_MMCC/002_MMCCBronx_MMCC_9D8EDE82-D1B7-4499-9DB2-296ADF0DC66D.jpg",
-        "src/assets/files/TheBronx/Asset_MMCC/003_MMCCBronx_MMCC_53F9E20F-4937-4242-A917-4A83A2F13472.jpg",
-        "src/assets/files/TheBronx/Asset_MMCC/004_MMCCBronx_MMCC_IMG_3193.jpg",
-        "src/assets/files/TheBronx/Asset_MMCC/005_MMCCBronx_MMCC_30FEAE80-3F9A-46F5-AD99-FFB76A3836E6.jpg",
-        "src/assets/files/TheBronx/Asset_MMCC/006_MMCCBronx_MMCC_BA2D2810-0379-4C1A-8A35-037C0E7EDAEE.jpg"
+        "files/TheBronx/Asset_MMCC/001_MMCCBronx_MMCC_IMG_3192.jpg",
+        "files/TheBronx/Asset_MMCC/002_MMCCBronx_MMCC_9D8EDE82-D1B7-4499-9DB2-296ADF0DC66D.jpg",
+        "files/TheBronx/Asset_MMCC/003_MMCCBronx_MMCC_53F9E20F-4937-4242-A917-4A83A2F13472.jpg",
+        "files/TheBronx/Asset_MMCC/004_MMCCBronx_MMCC_IMG_3193.jpg",
+        "files/TheBronx/Asset_MMCC/005_MMCCBronx_MMCC_30FEAE80-3F9A-46F5-AD99-FFB76A3836E6.jpg",
+        "files/TheBronx/Asset_MMCC/006_MMCCBronx_MMCC_BA2D2810-0379-4C1A-8A35-037C0E7EDAEE.jpg"
       ]
     },
     "coordinates": [-73.842941, 40.884541]

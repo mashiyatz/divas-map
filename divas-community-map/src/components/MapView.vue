@@ -43,10 +43,7 @@ export default {
     )
 
     map.on('load', async () => {
-      var markerImage = await map.loadImage(
-        //'https://upload.wikimedia.org/wikipedia/commons/9/9e/Pin-location.png'
-        'src/assets/DIVASHighlightCoverHeal.png'
-      )
+      var markerImage = await map.loadImage('DIVASHighlightCoverHeal.png')
 
       if (!map.hasImage('marker')) map.addImage('marker', markerImage.data)
       else {
