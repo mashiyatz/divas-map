@@ -196,7 +196,6 @@ defineExpose({ toggleMenu })
             :title="`${sideMenu.$state.title}`"
             frameborder="1"
             referrerpolicy="strict-origin-when-cross-origin"
-            sandbox=""
           ></iframe>
           <video
             :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"

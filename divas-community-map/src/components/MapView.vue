@@ -135,7 +135,7 @@ export default {
     flyToNextMarker(goNext: boolean) {
       this.$emit('openMenu')
       var newID: number = goNext ? storeSideMenu.value.id + 1 : storeSideMenu.value.id - 1
-      if (newID <= 0) newID = Object.keys(landmarks).length - 1
+      if (newID < 0) newID = Object.keys(landmarks).length - 1
       else if (newID >= Object.keys(landmarks).length) newID = 1
       storeSideMenu.value.$patch({
         id: landmarks[newID].properties.id,

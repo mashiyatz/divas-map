@@ -6,8 +6,8 @@
       "borough": "Queens",
       "title": "A Live Kitchen",
       "description": "Making Vegan Living Easy. Owner Steffen Alexander grew up in this neighborhood in Queens and struggled to find clean food with good taste. He didn't want to wait for the solution to come along - he wanted to BE the solution. Steffen opened A Live Kitchen to promote healthy living and offer an easy solution for customers to go vegan.",
-      "mediaType": "video",
-      "url": "src/assets/files/Laurelton/Asset_ALIVEKitchen/STEAM_ALiveKitchen_20240505.mp4",
+      "mediaType": "embed",
+      "url": "https://www.youtube.com/embed/UQUPEPOfczk?si=qEJFeH0sTKo8Y0-o",
       "slideShow": [
         "src/assets/files/Laurelton/Asset_ALIVEKitchen/001_kitchenQueens_DSC00432.jpg",
         "src/assets/files/Laurelton/Asset_ALIVEKitchen/002_kitchenQueens_IMG_4267.jpg"
@@ -79,8 +79,8 @@
       "borough": "Queens",
       "title": "The UPS Store",
       "description": "Students from the Linden SDA School interviewed Brandon Phillips of the UPS Store. The UPS Store makes a concerted effort to hire people that live in the neighborhood, which pours into the community.",
-      "mediaType": "video",
-      "url": "src/assets/files/Laurelton/Asset_UPS_Store/the_anti-gun_violence_asset_mapping_project_the_ups_store.mp4",
+      "mediaType": "embed",
+      "url": "https://www.youtube.com/embed/Hz_PGKR6bf4?si=Dlse2kX5BaH2k455",
       "slideShow": ["src/assets/files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"]
     },
     "coordinates": [-73.740568, 40.676478]
@@ -116,8 +116,8 @@
       "borough": "The Bronx",
       "title": "Edenwald Houses",
       "description": "",
-      "mediaType": "video",
-      "url": "https://youtu.be/6akxixWi1Bc?si=8HIWHct8zTW0LuMA",
+      "mediaType": "embed",
+      "url": "https://www.youtube.com/embed/6akxixWi1Bc?si=kCFbSKhbx4VsXWOv",
       "slideShow": [
         "src/assets/files/TheBronx/Asset_MMCC/001_MMCCBronx_MMCC_IMG_3192.jpg",
         "src/assets/files/TheBronx/Asset_MMCC/002_MMCCBronx_MMCC_9D8EDE82-D1B7-4499-9DB2-296ADF0DC66D.jpg",
