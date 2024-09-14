@@ -1,8 +1,15 @@
 <script lang="ts">
-import { Map, type LngLatBoundsLike, NavigationControl, type Feature } from 'maplibre-gl'
+import {
+  Map,
+  type LngLatBoundsLike,
+  NavigationControl,
+  type Feature,
+  AttributionControl
+} from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
+import { RGBADepthPacking } from 'three'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
@@ -28,7 +35,8 @@ export default {
       bearing: 0,
       pitchWithRotate: false,
       maplibreLogo: false,
-      maxBounds: bounds
+      maxBounds: bounds,
+      attributionControl: false
     })
 
     storeSideMenu.value = sideMenuStore()
@@ -71,33 +79,49 @@ export default {
         cluster: false
       })
 
-      // map.addLayer({
-      //   id: 'cluster-point',
-      //   type: 'symbol',
-      //   source: 'point',
-      //   filter: ['has', 'point_count'],
-      //   layout: {
-      //     'icon-image': 'marker',
-      //     'icon-size': 0.1
-      //   }
-      // })
-
       map.addLayer({
         id: 'points',
         type: 'symbol',
         source: 'point',
         filter: ['!', ['has', 'point_count']],
+        paint: {
+          'text-halo-color': 'rgba(0, 0, 0, 1)',
+          'text-halo-width': 0.5
+        },
         layout: {
           'text-field': ['get', 'title'],
           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-          'text-radial-offset': 2.5,
+          'text-radial-offset': 1.25,
           'text-justify': 'auto',
+          'text-font': ['literal', ['Montserrat']],
           'text-size': 24,
           'icon-image': 'marker',
           'icon-size': 0.1,
           'icon-allow-overlap': true
         }
       })
+
+      map.setLayoutProperty('points', 'icon-size', [
+        'interpolate',
+        ['exponential', 0.5],
+        ['zoom'],
+        12,
+        0.05,
+        18,
+        0.1
+      ])
+
+      map.addControl(new AttributionControl({ compact: true }), 'bottom-left')
+
+      map.setLayoutProperty('points', 'text-radial-offset', [
+        'interpolate',
+        ['exponential', 0.5],
+        ['zoom'],
+        12,
+        1.25,
+        18,
+        2.5
+      ])
 
       map.on('click', 'points', (e) => this.flyToSelectedMarker(e.features![0]))
 

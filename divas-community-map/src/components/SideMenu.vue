@@ -9,7 +9,8 @@ aside {
   padding: 1rem;
   background-color: var(--sidebar-color);
   color: var(--white-color);
-  width: calc(2rem + 32px);
+  // width: calc(2rem + 32px);
+  width: var(--sidebar-width);
   transition: 0.2s ease-out;
   z-index: 10;
 
@@ -26,18 +27,18 @@ aside {
   &.menuNotOpen {
     display: none;
   }
+}
 
-  &.Queens {
-    background-color: brown;
-  }
+.Queens {
+  background: brown;
+}
 
-  &.Brooklyn {
-    background-color: burlywood;
-  }
+.Brooklyn {
+  background: burlywood;
+}
 
-  &.The.Bronx {
-    background-color: chocolate;
-  }
+.The.Bronx {
+  background: chocolate;
 }
 
 #menu-slideshow:not(:hover) {
@@ -46,30 +47,26 @@ aside {
   }
 }
 
-#neighborhood:not(:hover) {
+#neighborhood {
+  width: 70vw;
+  height: auto;
+  right: 0;
+  padding-top: 2rem;
+
+  h1 {
+    color: whitesmoke;
+    font-size: 2.25rem;
+    font-weight: 700;
+  }
+
   button {
     display: none;
   }
+}
 
-  #train {
-    animation: pulse 5s infinite;
-  }
-
-  @keyframes pulse {
-    0% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.7);
-    }
-
-    70% {
-      transform: scale(1);
-      box-shadow: 0 0 0 10px rgba(255, 255, 255, 0);
-    }
-
-    100% {
-      transform: scale(0.95);
-      box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
-    }
+#dropdown:hover {
+  button {
+    display: block;
   }
 }
 </style>
@@ -88,7 +85,7 @@ const activeSlide = ref('')
 const intervalRef = ref()
 
 const isMenuOpen = ref(false)
-const bgColorRef = ref()
+// const buttonRef = ref(null)
 
 const UpdateSlide = () => {
   var newIndex = activeSlideIndex.value + 1
@@ -110,34 +107,52 @@ function toggleMenu(isOn: boolean) {
   else isMenuOpen.value = false
 }
 
+function hideButtons() {
+  var buttons = document.getElementsByClassName('dropdown-button') as HTMLCollectionOf<HTMLElement>
+  for (let button of buttons) {
+    button.style.display = 'none'
+  }
+  for (let button of buttons) {
+    button.style.display = ''
+  }
+}
+
 defineExpose({ toggleMenu })
+const emit = defineEmits(['travel', 'fly'])
 </script>
 
 <template v-model="store">
+  <!-- neighbor navigation -->
+  <div
+    id="neighborhood"
+    class="absolute z-20 flex flex-column justify-center items-center"
+    :class="`${isMenuOpen ? '' : 'hidden'}`"
+  >
+    <div
+      id="dropdown"
+      class="inline-block w-1/3 text-center rounded"
+      :class="`${sideMenu.$state.borough}`"
+    >
+      <h1 class="py-2">{{ sideMenu.$state.neighborhood }}</h1>
+
+      <button
+        class="dropdown-button w-full bg-white/20 opacity-80 transition ease-in-out duration-500 hover:opacity-100 hover:bg-white/0 py-2 rounded"
+        v-for="(item, key) in neighborhoods.$state.neighborhoodList.filter(
+          (x) => x != sideMenu.$state.neighborhood
+        )"
+        :key="key"
+        @click="`${$emit('travel', item)}`"
+      >
+        <h1>
+          {{ item }}
+        </h1>
+      </button>
+    </div>
+  </div>
+
+  <!-- side menu -->
   <aside :class="`${isMenuOpen ? sideMenu.$state.borough : 'menuNotOpen'}`">
     <div class="menu-content" :class="`${sideMenu.$state.id} ease-in-out`">
-      <!-- neighbor navigation -->
-      <div id="neighborhood" class="flex flex-row w-full items-center">
-        <div class="flex items-center">
-          <span id="train" class="material-symbols-outlined">subway</span>
-          <h1 class="text-xl font-bold pl-2">{{ sideMenu.$state.neighborhood }}</h1>
-
-          <button
-            class="flex items-center opacity-50 transition ease-in-out duration-500 hover:opacity-100"
-            v-for="(item, key) in neighborhoods.$state.neighborhoodList.filter(
-              (x) => x != sideMenu.$state.neighborhood
-            )"
-            :key="key"
-            @click="`${$emit('travel', item)}`"
-          >
-            <span class="material-symbols-outlined"> arrow_right </span>
-            <h1 class="text-xl font-bold">
-              {{ item }}
-            </h1>
-          </button>
-        </div>
-      </div>
-
       <div class="flex flex-row items-baseline w-full py-4">
         <button>
           <span class="material-symbols-outlined rotate-180" @click="`${$emit('fly', false)}`"
