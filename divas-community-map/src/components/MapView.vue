@@ -9,7 +9,6 @@ import {
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
-import { RGBADepthPacking } from 'three'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
