@@ -57,6 +57,7 @@ export default {
     onChangeNeighborhood(neighborhood: string) {
       const mapComponent: any = this.$refs.mapview
       const menuComponent: any = this.$refs.menu
+      menuComponent.loadSlides()
       menuComponent.resetSlide()
       menuComponent.UpdateSlide(true)
       mapComponent.changeToNeighborhood(neighborhood)

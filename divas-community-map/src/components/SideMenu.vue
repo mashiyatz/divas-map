@@ -90,11 +90,13 @@ const progress = ref(0)
 const progressBar = ref()
 const progressBarInterval = ref()
 
+const slidesRef = ref()
+
 const UpdateSlide = (goForward: boolean) => {
   // clearInterval(progressBarInterval.value)
   progress.value = 0
   if (sideMenu.$state.slideShow == undefined) return
-  let slides = document.getElementsByClassName('slide-img') as HTMLCollectionOf<HTMLElement>
+  let slides = slidesRef.value
   slides[activeSlideIndex.value].style.display = 'none'
   if (goForward) {
     activeSlideIndex.value += 1
@@ -112,10 +114,16 @@ function updateProgressBar() {
   else progress.value += 10
 }
 
+function loadSlides() {
+  // consider adding preloading??
+  slidesRef.value = document.getElementsByClassName('slide-img') as HTMLCollectionOf<HTMLElement>
+}
+
 onMounted(() => {
   progressBar.value = document.getElementById('progress-bar')
   progressBarInterval.value = setInterval(updateProgressBar, 10)
   intervalRef.value = setInterval(UpdateSlide, timeInterval)
+  loadSlides()
 })
 
 onBeforeUnmount(() => {
@@ -131,7 +139,7 @@ function resetSlide() {
   activeSlideIndex.value = 0
 }
 
-defineExpose({ toggleMenu, resetSlide, UpdateSlide })
+defineExpose({ toggleMenu, resetSlide, UpdateSlide, loadSlides })
 const emit = defineEmits(['travel', 'fly'])
 </script>
 
