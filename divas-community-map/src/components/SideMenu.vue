@@ -107,22 +107,13 @@ function toggleMenu(isOn: boolean) {
   else isMenuOpen.value = false
 }
 
-function hideButtons() {
-  var buttons = document.getElementsByClassName('dropdown-button') as HTMLCollectionOf<HTMLElement>
-  for (let button of buttons) {
-    button.style.display = 'none'
-  }
-  for (let button of buttons) {
-    button.style.display = ''
-  }
-}
-
 defineExpose({ toggleMenu })
 const emit = defineEmits(['travel', 'fly'])
 </script>
 
 <template v-model="store">
   <!-- neighbor navigation -->
+
   <div
     id="neighborhood"
     class="absolute z-20 flex flex-column justify-center items-center"
@@ -133,7 +124,8 @@ const emit = defineEmits(['travel', 'fly'])
       class="inline-block w-1/3 text-center rounded"
       :class="`${sideMenu.$state.borough}`"
     >
-      <h1 class="py-2">{{ sideMenu.$state.neighborhood }}</h1>
+      <h1 class="pt-2">{{ sideMenu.$state.neighborhood }}</h1>
+      <span class="material-symbols-outlined mt-[-18px]"> arrow_drop_down </span>
 
       <button
         class="dropdown-button w-full bg-white/20 opacity-80 transition ease-in-out duration-500 hover:opacity-100 hover:bg-white/0 py-2 rounded"
@@ -152,7 +144,7 @@ const emit = defineEmits(['travel', 'fly'])
 
   <!-- side menu -->
   <aside :class="`${isMenuOpen ? sideMenu.$state.borough : 'menuNotOpen'}`">
-    <div class="menu-content" :class="`${sideMenu.$state.id} ease-in-out`">
+    <div class="menu-content" :class="`${sideMenu.$state.id}`">
       <div class="flex flex-row items-baseline w-full py-4">
         <button>
           <span class="material-symbols-outlined rotate-180" @click="`${$emit('fly', false)}`"

@@ -9,6 +9,7 @@ import {
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
+import { string } from 'three/examples/jsm/nodes/Nodes.js'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
@@ -26,11 +27,13 @@ export default {
     const map: Map = new Map({
       container: 'map',
       style:
-        'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+        //'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+        'https://api.maptiler.com/maps/f5163ed8-5757-449d-86a8-d873f6116318/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
       zoom: 12,
       minZoom: 12,
+      maxZoom: 18,
       bearing: 0,
       pitchWithRotate: false,
       maplibreLogo: false,
@@ -78,11 +81,51 @@ export default {
         cluster: false
       })
 
+      map.addSource('borough', {
+        type: 'geojson',
+        data: 'src/borough-boundaries.geojson'
+      })
+
+      map.addSource('nta', {
+        type: 'geojson',
+        data: 'src/nyc_nta.geojson'
+      })
+
+      map.addLayer({
+        id: 'boroughs',
+        type: 'fill',
+        source: 'borough',
+        paint: {
+          'fill-color': '#aa336a',
+          'fill-opacity': 0.05
+        }
+      })
+
+      // color change between boroughs
+      map.addLayer({
+        id: 'neighborhoods',
+        type: 'fill',
+        source: 'nta',
+        paint: {
+          'fill-color': [
+            'match',
+            ['get', 'ntaname'],
+            'Laurelton',
+            '#fed976',
+            'East New York (North)',
+            '#fed603',
+            'Eastchester-Edenwald-Baychester',
+            '#fed323',
+            '#FFFFFF'
+          ],
+          'fill-opacity': 0.5
+        }
+      })
+
       map.addLayer({
         id: 'points',
         type: 'symbol',
         source: 'point',
-        filter: ['!', ['has', 'point_count']],
         paint: {
           'text-halo-color': 'rgba(0, 0, 0, 1)',
           'text-halo-width': 0.5
