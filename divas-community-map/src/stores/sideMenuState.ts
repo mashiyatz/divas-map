@@ -31,7 +31,7 @@ export const sideMenuStore = defineStore('sideMenuState', {
       description:
         'Children from all over the city have gathered a list of resources in their neighborhood -- have you been to any of these places?',
       mediaType: 'image',
-      url: 'https://upload.wikimedia.org/wikipedia/commons/7/77/Prospect_Park_New_York_May_2015_008.jpg'
+      url: ''
     }
   }
 })

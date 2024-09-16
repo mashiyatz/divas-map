@@ -3,8 +3,9 @@
   // make sidebar-width responsive
   --sidebar-width: 30vw;
   --default-color: rgb(35 55 75 / 90%);
-  --sidebar-color: rgb(196 109 94 / 95%);
+  --sidebar-color: rgb(224 219 199 / 95%);
   --white-color: #fff;
+  --black-color: rgb(28 25 23);
 }
 
 * {
@@ -49,10 +50,15 @@ export default {
   methods: {
     onFly(goNext: boolean) {
       const mapComponent: any = this.$refs.mapview
+      const menuComponent: any = this.$refs.menu
+      menuComponent.resetSlide()
       mapComponent.flyToNextMarker(goNext)
     },
     onChangeNeighborhood(neighborhood: string) {
       const mapComponent: any = this.$refs.mapview
+      const menuComponent: any = this.$refs.menu
+      menuComponent.resetSlide()
+      menuComponent.UpdateSlide(true)
       mapComponent.changeToNeighborhood(neighborhood)
     },
     onHome() {

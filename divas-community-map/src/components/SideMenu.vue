@@ -9,12 +9,12 @@ aside {
   padding: 1rem;
   background-color: var(--sidebar-color);
   color: var(--white-color);
-  // width: calc(2rem + 32px);
   width: var(--sidebar-width);
   transition: 0.2s ease-out;
   z-index: 10;
-
+  color: var(--black-color);
   width: var(--sidebar-width);
+  box-shadow: 2px 2px 10px 2px gray;
 
   .menu-content {
     display: flex;
@@ -29,21 +29,16 @@ aside {
   }
 }
 
-.Queens {
-  background: brown;
-}
-
-.Brooklyn {
-  background: burlywood;
-}
-
-.The.Bronx {
-  background: chocolate;
+#menu-slideshow {
+  color: var(--white-color);
+  border: 4px solid black;
 }
 
 #menu-slideshow:not(:hover) {
   .slide-button {
     display: none;
+    width: auto;
+    height: auto;
   }
 }
 
@@ -52,9 +47,9 @@ aside {
   height: auto;
   right: 0;
   padding-top: 2rem;
+  color: var(--black-color);
 
   h1 {
-    color: whitesmoke;
     font-size: 2.25rem;
     font-weight: 700;
   }
@@ -62,6 +57,11 @@ aside {
   button {
     display: none;
   }
+}
+
+#dropdown {
+  background: var(--sidebar-color);
+  box-shadow: 2px 2px 10px 2px gray;
 }
 
 #dropdown:hover {
@@ -81,21 +81,41 @@ import { ref } from 'vue'
 const sideMenu = sideMenuStore()
 const neighborhoods = neighborhoodStore()
 const activeSlideIndex = ref(0)
-const activeSlide = ref('')
-const intervalRef = ref()
-
 const isMenuOpen = ref(false)
-// const buttonRef = ref(null)
 
-const UpdateSlide = () => {
-  var newIndex = activeSlideIndex.value + 1
-  if (newIndex >= sideMenu.$state.slideShow?.length) newIndex = 0
-  activeSlideIndex.value = newIndex
-  activeSlide.value = sideMenu.$state.slideShow ? sideMenu.$state.slideShow[newIndex] : ''
+const intervalRef = ref()
+const timeInterval = 3000
+
+const progress = ref(0)
+const progressBar = ref()
+const progressBarInterval = ref()
+
+const UpdateSlide = (goForward: boolean) => {
+  // clearInterval(progressBarInterval.value)
+  progress.value = 0
+  if (sideMenu.$state.slideShow == undefined) return
+  let slides = document.getElementsByClassName('slide-img') as HTMLCollectionOf<HTMLElement>
+  slides[activeSlideIndex.value].style.display = 'none'
+  if (goForward) {
+    activeSlideIndex.value += 1
+    if (activeSlideIndex.value >= sideMenu.$state.slideShow?.length) activeSlideIndex.value = 0
+  } else {
+    activeSlideIndex.value -= 1
+    if (activeSlideIndex.value < 0) activeSlideIndex.value = sideMenu.$state.slideShow?.length - 1
+  }
+  slides[activeSlideIndex.value].style.display = 'block'
+}
+
+function updateProgressBar() {
+  progressBar.value.style.width = (progress.value / timeInterval) * 180 + '%'
+  if (progress.value + 10 > timeInterval) progress.value = timeInterval
+  else progress.value += 10
 }
 
 onMounted(() => {
-  intervalRef.value = setInterval(UpdateSlide, 2000)
+  progressBar.value = document.getElementById('progress-bar')
+  progressBarInterval.value = setInterval(updateProgressBar, 10)
+  intervalRef.value = setInterval(UpdateSlide, timeInterval)
 })
 
 onBeforeUnmount(() => {
@@ -107,13 +127,16 @@ function toggleMenu(isOn: boolean) {
   else isMenuOpen.value = false
 }
 
-defineExpose({ toggleMenu })
+function resetSlide() {
+  activeSlideIndex.value = 0
+}
+
+defineExpose({ toggleMenu, resetSlide, UpdateSlide })
 const emit = defineEmits(['travel', 'fly'])
 </script>
 
 <template v-model="store">
   <!-- neighbor navigation -->
-
   <div
     id="neighborhood"
     class="absolute z-20 flex flex-column justify-center items-center"
@@ -159,39 +182,50 @@ const emit = defineEmits(['travel', 'fly'])
         </button>
       </div>
 
-      <div class="overflow-y-auto">
-        <p class="text-lg">{{ sideMenu.$state.description }}</p>
+      <div class="h-full overflow-y-auto">
+        <p class="text-lg pb-4">{{ sideMenu.$state.description }}</p>
 
-        <!-- Main Image -->
+        <!-- Main Image
         <div id="menu-main-img" class="pt-6 w-full">
           <img
             loading="lazy"
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
           />
-        </div>
+        </div> -->
 
         <!-- Slide Show -->
 
         <div
           id="menu-slideshow"
-          :class="`${activeSlide == '' ? 'hidden' : ''}`"
-          class="relative flex flex-row w-full h-2/5"
-          @click="`${UpdateSlide()}`"
+          :class="`${sideMenu.$state.slideShow == undefined ? 'hidden' : ''}`"
+          class="relative flex flex-row justify-center w-full h-2/5"
         >
-          <button class="slide-button" @click="`${UpdateSlide()}`">
+          <button class="slide-button z-20" @click="`${UpdateSlide(false)}`">
             <span class="absolute material-symbols-outlined rotate-180 left-1"
               >arrow_forward_ios</span
             >
           </button>
-          <img :src="`${activeSlide}`" class="w-full h-full object-cover" />
-          <button class="slide-button" @click="`${UpdateSlide()}`">
+
+          <div class="hidden flex z-20 h-1 w-4/5 bg-transparent rounded self-end mb-4">
+            <div id="progress-bar" class="bg-gray-300 w-full rounded"></div>
+          </div>
+
+          <img
+            v-for="(item, key) in sideMenu.$state.slideShow"
+            :key="key"
+            :src="item"
+            class="slide-img absolute w-full h-full object-cover"
+          />
+
+          <button class="slide-button z-20" @click="`${UpdateSlide(true)}`">
             <span class="absolute material-symbols-outlined right-1">arrow_forward_ios</span>
           </button>
         </div>
 
         <!-- Other media, need to loop through sideMenu.$.state.allMedia -->
-        <div id="menu-media" class="pt-6 w-full h-96">
+        <div id="menu-media" class="mt-6 w-full h-96">
+          <!-- add border to media? border-4 border-black -->
           <img
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"

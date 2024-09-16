@@ -5,13 +5,19 @@
       <span class="material-symbols-outlined text-8xl"> explore </span>
     </button>
   </div>
-  <!-- home button toggle -->
   <button
     class="absolute z-50 bottom-[10px] right-[10px]"
     :class="`${isOnSplash ? 'hidden' : ''}`"
     @click="ToggleSplash"
   >
-    <span class="material-symbols-outlined text-7xl text-black"> home </span>
+    <span class="material-symbols-outlined text-7xl text-stone-900"> home </span>
+  </button>
+  <button
+    class="absolute z-50 top-[100px] right-[7px]"
+    :class="`${isOnSplash ? 'hidden' : ''}`"
+    @click="$emit('home')"
+  >
+    <span class="material-symbols-outlined text-4xl text-stone-900"> zoom_out_map </span>
   </button>
 </template>
 

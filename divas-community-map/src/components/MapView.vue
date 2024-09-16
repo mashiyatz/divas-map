@@ -9,7 +9,6 @@ import {
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
-import { string } from 'three/examples/jsm/nodes/Nodes.js'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
@@ -61,6 +60,16 @@ export default {
         map.addImage('marker', markerImage.data)
       }
 
+      const layers = map.getStyle().layers
+      // Find the index of the first symbol layer in the map style.
+      let firstSymbolId
+      for (const layer of layers) {
+        if (layer.type === 'symbol') {
+          firstSymbolId = layer.id
+          break
+        }
+      }
+
       const features = Object.values(landmarks).map((landmark) => {
         return {
           type: 'Feature',
@@ -83,44 +92,48 @@ export default {
 
       map.addSource('borough', {
         type: 'geojson',
-        data: 'src/borough-boundaries.geojson'
+        data: 'geojson/borough-boundaries.geojson'
       })
 
       map.addSource('nta', {
         type: 'geojson',
-        data: 'src/nyc_nta.geojson'
+        data: 'geojson/nyc_nta.geojson'
       })
 
-      map.addLayer({
-        id: 'boroughs',
-        type: 'fill',
-        source: 'borough',
-        paint: {
-          'fill-color': '#aa336a',
-          'fill-opacity': 0.05
-        }
-      })
-
-      // color change between boroughs
-      map.addLayer({
-        id: 'neighborhoods',
-        type: 'fill',
-        source: 'nta',
-        paint: {
-          'fill-color': [
-            'match',
-            ['get', 'ntaname'],
-            'Laurelton',
-            '#fed976',
-            'East New York (North)',
-            '#fed603',
-            'Eastchester-Edenwald-Baychester',
-            '#fed323',
-            '#FFFFFF'
-          ],
-          'fill-opacity': 0.5
-        }
-      })
+      map.addLayer(
+        {
+          id: 'boroughs',
+          type: 'fill',
+          source: 'borough',
+          paint: {
+            'fill-color': '#e0cbc7',
+            'fill-opacity': 0.5
+          }
+        },
+        'park'
+      )
+      map.addLayer(
+        {
+          id: 'neighborhoods',
+          type: 'fill',
+          source: 'nta',
+          paint: {
+            'fill-color': [
+              'match',
+              ['get', 'ntaname'],
+              'Laurelton',
+              '#cead94',
+              'East New York (North)',
+              '#cfb1c0',
+              'Eastchester-Edenwald-Baychester',
+              '#a3c8f7',
+              '#FFFFFF'
+            ],
+            'fill-opacity': 1
+          }
+        },
+        'boroughs'
+      )
 
       map.addLayer({
         id: 'points',
@@ -199,13 +212,18 @@ export default {
       this.$emit('openMenu')
       var newID: number = goNext ? storeSideMenu.value.id + 1 : storeSideMenu.value.id - 1
       if (newID < 0) newID = Object.keys(landmarks).length - 1
-      else if (newID >= Object.keys(landmarks).length) newID = 1
+      else if (newID >= Object.keys(landmarks).length) newID = 0
       storeSideMenu.value.$patch({
         id: landmarks[newID].properties.id,
         neighborhood: landmarks[newID].properties.neighborhood,
         borough: landmarks[newID].properties.borough,
         title: landmarks[newID].properties.title,
         description: landmarks[newID].properties.description,
+        mediaType: '',
+        url: '',
+        slideShow: ''
+      })
+      storeSideMenu.value.$patch({
         mediaType: landmarks[newID].properties.mediaType,
         url: landmarks[newID].properties.url,
         slideShow: landmarks[newID].properties.slideShow
@@ -224,6 +242,11 @@ export default {
         borough: landmark.properties.borough,
         title: landmark.properties.title,
         description: landmark.properties.description,
+        mediaType: '',
+        url: '',
+        slideShow: ''
+      })
+      storeSideMenu.value.$patch({
         mediaType: landmark.properties.mediaType,
         url: landmark.properties.url,
         slideShow: landmark.properties.slideShow
