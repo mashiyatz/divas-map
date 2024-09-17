@@ -59,7 +59,6 @@ export default {
       const menuComponent: any = this.$refs.menu
       menuComponent.loadSlides()
       menuComponent.resetSlide()
-      menuComponent.UpdateSlide(true)
       mapComponent.changeToNeighborhood(neighborhood)
     },
     onHome() {

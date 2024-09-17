@@ -32,7 +32,7 @@ export default {
       pitch: 45,
       zoom: 12,
       minZoom: 12,
-      maxZoom: 18,
+      maxZoom: 16,
       bearing: 0,
       pitchWithRotate: false,
       maplibreLogo: false,
@@ -152,7 +152,8 @@ export default {
           'text-size': 24,
           'icon-image': 'marker',
           'icon-size': 0.1,
-          'icon-allow-overlap': true
+          'icon-allow-overlap': true,
+          'text-optional': true
         }
       })
 
@@ -162,7 +163,7 @@ export default {
         ['zoom'],
         12,
         0.05,
-        18,
+        16,
         0.1
       ])
 
@@ -174,7 +175,7 @@ export default {
         ['zoom'],
         12,
         1.25,
-        18,
+        16,
         2.5
       ])
 
@@ -205,7 +206,7 @@ export default {
       })
       mapRef.value.flyTo({
         center: event.geometry.coordinates,
-        zoom: 18
+        zoom: 16
       })
     },
     flyToNextMarker(goNext: boolean) {
@@ -230,7 +231,7 @@ export default {
       })
       mapRef.value.flyTo({
         center: landmarks[newID].coordinates,
-        zoom: 18
+        zoom: 16
       })
     },
     changeToNeighborhood(name: string) {
@@ -253,7 +254,7 @@ export default {
       })
       mapRef.value.flyTo({
         center: landmark.coordinates,
-        zoom: 18
+        zoom: 16
       })
     },
     resetToHome() {

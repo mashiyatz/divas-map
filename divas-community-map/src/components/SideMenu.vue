@@ -29,6 +29,18 @@ aside {
   }
 }
 
+.Queens {
+  background: #cead94;
+}
+
+.Brooklyn {
+  background: #cfb1c0;
+}
+
+.Bronx {
+  background: #a3c8f7;
+}
+
 #menu-slideshow {
   color: var(--white-color);
   border: 4px solid black;
@@ -36,7 +48,6 @@ aside {
 
 #menu-slideshow:not(:hover) {
   .slide-button {
-    display: none;
     width: auto;
     height: auto;
   }
@@ -44,6 +55,7 @@ aside {
 
 #neighborhood {
   width: 70vw;
+  pointer-events: none;
   height: auto;
   right: 0;
   padding-top: 2rem;
@@ -60,7 +72,8 @@ aside {
 }
 
 #dropdown {
-  background: var(--sidebar-color);
+  pointer-events: all;
+  // background: var(--sidebar-color);
   box-shadow: 2px 2px 10px 2px gray;
 }
 
@@ -94,7 +107,7 @@ const slidesRef = ref()
 
 const UpdateSlide = (goForward: boolean) => {
   // clearInterval(progressBarInterval.value)
-  progress.value = 0
+  // progress.value = 0
   if (sideMenu.$state.slideShow == undefined) return
   let slides = slidesRef.value
   slides[activeSlideIndex.value].style.display = 'none'
@@ -120,14 +133,14 @@ function loadSlides() {
 }
 
 onMounted(() => {
-  progressBar.value = document.getElementById('progress-bar')
-  progressBarInterval.value = setInterval(updateProgressBar, 10)
-  intervalRef.value = setInterval(UpdateSlide, timeInterval)
+  // progressBar.value = document.getElementById('progress-bar')
+  // progressBarInterval.value = setInterval(updateProgressBar, 10)
+  // intervalRef.value = setInterval(UpdateSlide, timeInterval)
   loadSlides()
 })
 
 onBeforeUnmount(() => {
-  clearInterval(intervalRef.value)
+  // clearInterval(intervalRef.value)
 })
 
 function toggleMenu(isOn: boolean) {
