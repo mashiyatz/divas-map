@@ -1,11 +1,5 @@
 <script lang="ts">
-import {
-  Map,
-  type LngLatBoundsLike,
-  NavigationControl,
-  type Feature,
-  AttributionControl
-} from 'maplibre-gl'
+import { Map, type LngLatBoundsLike, NavigationControl, setRTLTextPlugin } from 'maplibre-gl'
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { ref } from 'vue'
 import untypedLandmarks from '../landmarks.json'
@@ -23,6 +17,10 @@ const mapRef = ref()
 
 export default {
   mounted() {
+    setRTLTextPlugin(
+      'https://unpkg.com/@mapbox/mapbox-gl-rtl-text@0.2.3/mapbox-gl-rtl-text.min.js',
+      true
+    )
     const map: Map = new Map({
       container: 'map',
       style:
@@ -148,7 +146,6 @@ export default {
           'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
           'text-radial-offset': 1.25,
           'text-justify': 'auto',
-          'text-font': ['literal', ['Montserrat']],
           'text-size': 24,
           'icon-image': 'marker',
           'icon-size': 0.1,
@@ -167,7 +164,7 @@ export default {
         0.1
       ])
 
-      map.addControl(new AttributionControl({ compact: true }), 'bottom-left')
+      // map.addControl(new AttributionControl({ compact: true }), 'bottom-left')
 
       map.setLayoutProperty('points', 'text-radial-offset', [
         'interpolate',

@@ -60,7 +60,6 @@ function ToggleSplash() {
   flex-direction: column;
   place-content: center;
   position: fixed;
-  font-family: Helvetica, sans-serif;
   color: antiquewhite;
   top: 0;
   left: 0;

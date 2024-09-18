@@ -1,27 +1,29 @@
 <style lang="scss" scoped>
 aside {
-  display: flex;
+  display: block;
   position: absolute;
-  flex-direction: column;
+  box-sizing: border-box;
+  border-radius: 2rem;
   overflow: hidden;
-  height: 100vh;
+  height: 95vh;
   max-height: 100vh;
-  padding: 1rem;
+  padding: 1.5rem;
+  margin-left: 1.5rem;
   background-color: var(--sidebar-color);
   color: var(--white-color);
-  width: var(--sidebar-width);
   transition: 0.2s ease-out;
   z-index: 10;
   color: var(--black-color);
   width: var(--sidebar-width);
-  box-shadow: 2px 2px 10px 2px gray;
+  top: 50%;
+  transform: translateY(-50%);
+  // box-shadow: 2px 2px 10px 2px gray;
 
   .menu-content {
     display: flex;
     flex-direction: column;
     width: 100%;
-    top: -4rem;
-    height: 100%;
+    height: 95%;
   }
 
   &.menuNotOpen {
@@ -58,7 +60,7 @@ aside {
   pointer-events: none;
   height: auto;
   right: 0;
-  padding-top: 2rem;
+  padding-top: calc(2.5vh + 1.5rem);
   color: var(--black-color);
 
   h1 {
@@ -73,8 +75,9 @@ aside {
 
 #dropdown {
   pointer-events: all;
+  border-radius: 2rem;
   // background: var(--sidebar-color);
-  box-shadow: 2px 2px 10px 2px gray;
+  // box-shadow: 2px 2px 10px 2px gray;
 }
 
 #dropdown:hover {
@@ -109,6 +112,10 @@ const UpdateSlide = (goForward: boolean) => {
   // clearInterval(progressBarInterval.value)
   // progress.value = 0
   if (sideMenu.$state.slideShow == undefined) return
+  if (sideMenu.$state.slideShow.length == 1) {
+    slidesRef.value[0].style.display = 'none'
+    return
+  }
   let slides = slidesRef.value
   slides[activeSlideIndex.value].style.display = 'none'
   if (goForward) {
@@ -163,11 +170,7 @@ const emit = defineEmits(['travel', 'fly'])
     class="absolute z-20 flex flex-column justify-center items-center"
     :class="`${isMenuOpen ? '' : 'hidden'}`"
   >
-    <div
-      id="dropdown"
-      class="inline-block w-1/3 text-center rounded"
-      :class="`${sideMenu.$state.borough}`"
-    >
+    <div id="dropdown" class="inline-block w-1/3 text-center" :class="`${sideMenu.$state.borough}`">
       <h1 class="pt-2">{{ sideMenu.$state.neighborhood }}</h1>
       <span class="material-symbols-outlined mt-[-18px]"> arrow_drop_down </span>
 
