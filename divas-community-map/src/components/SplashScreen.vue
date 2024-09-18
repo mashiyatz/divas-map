@@ -67,7 +67,7 @@ function ToggleSplash() {
   width: 100%;
   height: 100%;
   z-index: 99;
-  background-image: url('bridges.jpg');
+  background-image: url('../../public/bridges.jpg');
   background-size: cover;
   opacity: 0;
   visibility: hidden;
