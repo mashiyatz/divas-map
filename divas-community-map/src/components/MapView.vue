@@ -138,8 +138,9 @@ export default {
         type: 'symbol',
         source: 'point',
         paint: {
-          'text-halo-color': 'rgba(0, 0, 0, 1)',
-          'text-halo-width': 0.5
+          'text-color': 'rgb(70, 70, 70)',
+          'text-halo-color': 'rgba(70, 70, 70, 1)',
+          'text-halo-width': 0.1
         },
         layout: {
           'text-field': ['get', 'title'],
@@ -147,6 +148,7 @@ export default {
           'text-radial-offset': 1.25,
           'text-justify': 'auto',
           'text-size': 24,
+          'text-font': ['literal', ['Metropolis Semi Bold']],
           'icon-image': 'marker',
           'icon-size': 0.1,
           'icon-allow-overlap': true,

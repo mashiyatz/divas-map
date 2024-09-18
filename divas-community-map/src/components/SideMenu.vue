@@ -29,23 +29,27 @@ aside {
   &.menuNotOpen {
     display: none;
   }
+
+  p {
+    font-weight: 400;
+  }
 }
 
 .Queens {
-  background: #cead94;
+  background: rgba(206, 173, 148, 0.85);
 }
 
 .Brooklyn {
-  background: #cfb1c0;
+  background: rgba(207, 177, 192, 0.85);
 }
 
 .Bronx {
-  background: #a3c8f7;
+  background: rgba(163, 200, 247, 0.85);
 }
 
 #menu-slideshow {
   color: var(--white-color);
-  border: 4px solid black;
+  border: 4px solid var(--black-color);
 }
 
 #menu-slideshow:not(:hover) {
@@ -60,7 +64,7 @@ aside {
   pointer-events: none;
   height: auto;
   right: 0;
-  padding-top: calc(2.5vh + 1.5rem);
+  padding-top: calc(2.5vh + 1rem);
   color: var(--black-color);
 
   h1 {
@@ -171,7 +175,7 @@ const emit = defineEmits(['travel', 'fly'])
     :class="`${isMenuOpen ? '' : 'hidden'}`"
   >
     <div id="dropdown" class="inline-block w-1/3 text-center" :class="`${sideMenu.$state.borough}`">
-      <h1 class="pt-2">{{ sideMenu.$state.neighborhood }}</h1>
+      <h1 class="pt-4">{{ sideMenu.$state.neighborhood }}</h1>
       <span class="material-symbols-outlined mt-[-18px]"> arrow_drop_down </span>
 
       <button

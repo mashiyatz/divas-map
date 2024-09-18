@@ -5,11 +5,11 @@
   --default-color: rgb(35 55 75 / 90%);
   --sidebar-color: rgb(224 219 199 / 95%);
   --white-color: #fff;
-  --black-color: rgb(28 25 23);
+  --black-color: rgb(70, 70, 70);
 }
 
 * {
-  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Metropolis', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
 #layout {

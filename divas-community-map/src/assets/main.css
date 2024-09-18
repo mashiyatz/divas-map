@@ -3,6 +3,30 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src:
+    url(https://cdn.jsdelivr.net/fontsource/fonts/metropolis@latest/latin-400-normal.woff2)
+      format('woff2'),
+    url(https://cdn.jsdelivr.net/fontsource/fonts/metropolis@latest/latin-400-normal.woff)
+      format('woff');
+}
+
+@font-face {
+  font-family: 'Metropolis';
+  font-style: normal;
+  font-display: swap;
+  font-weight: 600;
+  src:
+    url(https://cdn.jsdelivr.net/fontsource/fonts/metropolis@latest/latin-600-normal.woff2)
+      format('woff2'),
+    url(https://cdn.jsdelivr.net/fontsource/fonts/metropolis@latest/latin-600-normal.woff)
+      format('woff');
+}
+
 #app {
   max-width: 100%;
   margin: 0 auto;

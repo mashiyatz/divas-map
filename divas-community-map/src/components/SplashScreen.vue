@@ -30,14 +30,16 @@
     :class="`${isOnSplash ? 'hidden' : ''}`"
     @click="ToggleSplash"
   >
-    <span class="material-symbols-outlined text-7xl text-stone-900"> home </span>
+    <span class="material-symbols-outlined text-7xl" style="color: rgb(70, 70, 70)"> home </span>
   </button>
   <button
     class="absolute z-50 top-[100px] right-[7px]"
     :class="`${isOnSplash ? 'hidden' : ''}`"
     @click="$emit('home')"
   >
-    <span class="material-symbols-outlined text-4xl text-stone-900"> zoom_out_map </span>
+    <span class="material-symbols-outlined text-4xl" style="color: rgb(70, 70, 70)">
+      zoom_out_map
+    </span>
   </button>
 </template>
 
@@ -55,7 +57,7 @@ function ToggleSplash() {
 
 <style lang="scss" scoped>
 .panel {
-  text-shadow: black 1px 1px 5px;
+  text-shadow: var(---color) 1px 1px 5px;
   display: flex;
   flex-direction: column;
   place-content: center;
