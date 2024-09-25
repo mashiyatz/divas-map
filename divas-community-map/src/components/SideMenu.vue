@@ -255,21 +255,23 @@ const emit = defineEmits(['travel', 'fly'])
         </div>
 
         <!-- Other media, need to loop through sideMenu.$.state.allMedia -->
-        <div id="menu-media" class="mt-6 w-full h-96">
+        <div id="menu-media" class="mt-6 w-full">
           <!-- add border to media? border-4 border-black -->
           <img
+            class="h-96"
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
           />
           <iframe
             :class="`${sideMenu.$state.mediaType == 'embed' ? 'embed-media' : 'hidden'}`"
-            class="w-full h-full"
+            class="w-full h-96"
             :src="`${sideMenu.$state.url}`"
             :title="`${sideMenu.$state.title}`"
             frameborder="1"
             referrerpolicy="strict-origin-when-cross-origin"
           ></iframe>
           <video
+            class="h-96"
             :class="`${sideMenu.$state.mediaType == 'video' ? 'video-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
             autoplay
@@ -277,6 +279,7 @@ const emit = defineEmits(['travel', 'fly'])
             controls
           ></video>
           <audio
+            class="h-96"
             :class="`${sideMenu.$state.mediaType == 'audio' ? 'audio-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
           ></audio>
