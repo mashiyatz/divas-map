@@ -81,7 +81,10 @@
       "description": "Students from the Linden SDA School interviewed Brandon Phillips of the UPS Store. The UPS Store makes a concerted effort to hire people that live in the neighborhood, which pours into the community.",
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/Hz_PGKR6bf4?si=Dlse2kX5BaH2k455",
-      "slideShow": ["files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"]
+      "slideShow": [
+        "files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg",
+        "files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"
+      ]
     },
     "coordinates": [-73.740568, 40.676478]
   },
