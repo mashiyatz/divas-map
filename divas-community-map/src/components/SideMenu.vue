@@ -232,7 +232,7 @@ const emit = defineEmits(['travel', 'fly'])
           :class="`${sideMenu.$state.slideShow == undefined ? 'hidden' : ''}`"
           class="relative flex flex-row justify-center w-full h-2/5"
         >
-          <button class="slide-button z-20" @click="`${UpdateSlide(false)}`">
+          <button class="slide-button z-50" @click="`${UpdateSlide(false)}`">
             <span class="absolute material-symbols-outlined rotate-180 left-1"
               >arrow_forward_ios</span
             >
@@ -249,7 +249,7 @@ const emit = defineEmits(['travel', 'fly'])
             class="slide-img absolute w-full h-full object-cover"
           />
 
-          <button class="slide-button z-20" @click="`${UpdateSlide(true)}`">
+          <button class="slide-button z-50" @click="`${UpdateSlide(true)}`">
             <span class="absolute material-symbols-outlined right-1">arrow_forward_ios</span>
           </button>
         </div>
