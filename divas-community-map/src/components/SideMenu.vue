@@ -7,7 +7,10 @@ aside {
   overflow: hidden;
   height: 95vh;
   max-height: 100vh;
-  padding: 1.5rem;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
   margin-left: 1.5rem;
   background-color: var(--sidebar-color);
   color: var(--white-color);
@@ -35,17 +38,17 @@ aside {
   }
 }
 
-.Queens {
-  background: rgba(206, 173, 148, 0.85);
-}
+// .Queens {
+//   background: rgba(206, 173, 148, 0.85);
+// }
 
-.Brooklyn {
-  background: rgba(207, 177, 192, 0.85);
-}
+// .Brooklyn {
+//   background: rgba(207, 177, 192, 0.85);
+// }
 
-.Bronx {
-  background: rgba(163, 200, 247, 0.85);
-}
+// .Bronx {
+//   background: rgba(163, 200, 247, 0.85);
+// }
 
 #menu-slideshow {
   color: var(--white-color);
@@ -80,7 +83,7 @@ aside {
 #dropdown {
   pointer-events: all;
   border-radius: 2rem;
-  // background: var(--sidebar-color);
+  background: var(--sidebar-color);
   // box-shadow: 2px 2px 10px 2px gray;
 }
 

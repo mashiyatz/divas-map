@@ -1,28 +1,25 @@
 <template>
   <div class="panel" :class="`${isOnSplash ? 'isOnSplash' : ''}`">
-    <div
-      class="w-full h-full backdrop-blur-sm backdrop-sepia-[40%] backdrop-brightness-[70%]"
-    ></div>
-    <div class="absolute w-[65%] self-center text-center">
-      <!-- <h1 class="text-2xl text-center pb-8">
-        <b>The Anti-Gun Violence Asset Mapping Project</b>
-      </h1> -->
-      <p class="text-8xl text-left pb-8">
-        <b
-          >By expanding to what is good in the community,
-          <span style="color: green"><b>change is possible</b></span
-          >.</b
-        >
+    <div class="back w-full h-full backdrop-blur-sm backdrop-brightness-[60%]"></div>
+    <div class="absolute w-[85%] self-center text-center">
+      <p class="text-[15vh]/[18vh] text-left opacity-20 pb-20">
+        by expanding to <br />
+        what is good in the <br />
+        community,<br />
+        <span style="font-weight: 900; font-style: italic">change </span>is possible.
       </p>
-      <p class="text-2xl text-right pb-8">
-        <em>The Anti-Gun Violence Asset Mapping Project</em><br /><em
-          >by DIVAS for Social Justice</em
-        >
-      </p>
-      <button @click="ToggleSplash">
-        <span class="material-symbols-outlined text-8xl"> explore </span>
-      </button>
     </div>
+    <div class="back absolute w-full h-full backdrop-brightness-[70%] pointer-events-none"></div>
+    <div class="absolute w-[65%] self-center text-center">
+      <p class="text-4xl pb-6 font-black">The Anti-Gun Violence Asset Mapping Project</p>
+      <p class="text-xl">by DIVAS for Social Justice</p>
+    </div>
+    <button
+      @click="ToggleSplash"
+      class="absolute self-center bottom-20 bg-gray-900 rounded-full w-[120px] h-[50px]"
+    >
+      <p style="font-family: Roboto; font-weight: 700">Explore</p>
+    </button>
   </div>
 
   <button
@@ -68,17 +65,26 @@ function ToggleSplash() {
   width: 100%;
   height: 100%;
   z-index: 99;
-  background-image: url('../../public/bridges.jpg');
+  background-color: rgba(0, 0, 0, 0.1);
   background-size: cover;
   opacity: 0;
   visibility: hidden;
   transition:
-    visibility ease-out 2s,
-    opacity ease-in-out 2s;
+    visibility ease-in-out 1s,
+    opacity ease-in-out 0.8s;
+
+  .back {
+    opacity: 0;
+    transition: opacity ease-in-out 0.8s;
+  }
 
   &.isOnSplash {
     visibility: visible;
     opacity: 1;
+
+    .back {
+      opacity: 1;
+    }
   }
 }
 </style>

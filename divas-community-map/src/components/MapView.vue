@@ -25,7 +25,8 @@ export default {
       container: 'map',
       style:
         //'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
-        'https://api.maptiler.com/maps/f5163ed8-5757-449d-86a8-d873f6116318/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+        //'https://api.maptiler.com/maps/f5163ed8-5757-449d-86a8-d873f6116318/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+        'https://api.maptiler.com/maps/d0a22686-4f00-4aa6-82dc-dbb27fb2b31c/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
       zoom: 12,
@@ -98,18 +99,18 @@ export default {
         data: 'geojson/nyc_nta.geojson'
       })
 
-      map.addLayer(
-        {
-          id: 'boroughs',
-          type: 'fill',
-          source: 'borough',
-          paint: {
-            'fill-color': '#e0cbc7',
-            'fill-opacity': 0.5
-          }
-        },
-        'park'
-      )
+      // map.addLayer(
+      //   {
+      //     id: 'boroughs',
+      //     type: 'fill',
+      //     source: 'borough',
+      //     paint: {
+      //       'fill-color': '#e0cbc7',
+      //       'fill-opacity': 0.5
+      //     }
+      //   },
+      //   'park'
+      // )
       map.addLayer(
         {
           id: 'neighborhoods',
@@ -120,17 +121,17 @@ export default {
               'match',
               ['get', 'ntaname'],
               'Laurelton',
-              '#cead94',
+              '#b09378',
               'East New York (North)',
-              '#cfb1c0',
+              '#a1ae2d',
               'Eastchester-Edenwald-Baychester',
-              '#a3c8f7',
-              '#FFFFFF'
+              '#ed9e26',
+              '#FFFFFF00'
             ],
             'fill-opacity': 1
           }
         },
-        'boroughs'
+        'park'
       )
 
       map.addLayer({

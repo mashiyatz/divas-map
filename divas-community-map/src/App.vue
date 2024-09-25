@@ -3,13 +3,18 @@
   // make sidebar-width responsive
   --sidebar-width: 30vw;
   --default-color: rgb(35 55 75 / 90%);
-  --sidebar-color: rgb(224 219 199 / 95%);
+  // sidebar-color: rgb(224 219 199 / 95%);
+  --sidebar-color: rgb(250 250 250 / 95%);
   --white-color: #fff;
   --black-color: rgb(70, 70, 70);
 }
 
 * {
-  font-family: 'Metropolis', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+p {
+  font-family: 'Merriweather';
 }
 
 #layout {
