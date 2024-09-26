@@ -24,9 +24,8 @@ export default {
     const map: Map = new Map({
       container: 'map',
       style:
-        //'https://api.maptiler.com/maps/2b4ffeb2-c0c6-4892-9881-e78c2d8a6181/style.json?key=vbWcEeVNDHjFUuEi2uGd',
         //'https://api.maptiler.com/maps/f5163ed8-5757-449d-86a8-d873f6116318/style.json?key=vbWcEeVNDHjFUuEi2uGd',
-        'https://api.maptiler.com/maps/d0a22686-4f00-4aa6-82dc-dbb27fb2b31c/style.json?key=vbWcEeVNDHjFUuEi2uGd',
+        'https://api.maptiler.com/maps/6982f052-362d-4281-a878-7143d45b368b/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
       zoom: 12,
@@ -121,14 +120,14 @@ export default {
               'match',
               ['get', 'ntaname'],
               'Laurelton',
-              '#b09378',
+              '#5f9dd3',
               'East New York (North)',
-              '#a1ae2d',
+              '#3e7e77',
               'Eastchester-Edenwald-Baychester',
-              '#ed9e26',
+              '#daab3e',
               '#FFFFFF00'
             ],
-            'fill-opacity': 1
+            'fill-opacity': 0.5
           }
         },
         'park'

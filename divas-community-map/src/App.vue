@@ -3,8 +3,9 @@
   // make sidebar-width responsive
   --sidebar-width: 30vw;
   --default-color: rgb(35 55 75 / 90%);
-  // sidebar-color: rgb(224 219 199 / 95%);
-  --sidebar-color: rgb(250 250 250 / 95%);
+  // --sidebar-color: rgb(224 219 199 / 95%);
+  // --sidebar-color: rgb(250 250 250 / 95%);
+  --sidebar-color: rgb(247 243 243 / 95%);
   --white-color: #fff;
   --black-color: rgb(70, 70, 70);
 }
@@ -56,6 +57,7 @@ export default {
     onFly(goNext: boolean) {
       const mapComponent: any = this.$refs.mapview
       const menuComponent: any = this.$refs.menu
+      menuComponent.loadSlides()
       menuComponent.resetSlide()
       mapComponent.flyToNextMarker(goNext)
     },

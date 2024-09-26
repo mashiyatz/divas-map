@@ -2,7 +2,7 @@
   <div class="panel" :class="`${isOnSplash ? 'isOnSplash' : ''}`">
     <div class="back w-full h-full backdrop-blur-sm backdrop-brightness-[60%]"></div>
     <div class="absolute w-[85%] self-center text-center">
-      <p class="text-[15vh]/[18vh] text-left opacity-20 pb-20">
+      <p class="text-[9vw]/[11vw] text-left opacity-20 pb-20">
         by expanding to <br />
         what is good in the <br />
         community,<br />
@@ -23,18 +23,27 @@
   </div>
 
   <button
-    class="absolute z-50 bottom-[10px] right-[10px]"
+    class="absolute z-50 top-[156px] right-[10px]"
     :class="`${isOnSplash ? 'hidden' : ''}`"
     @click="ToggleSplash"
   >
-    <span class="material-symbols-outlined text-7xl" style="color: rgb(70, 70, 70)"> home </span>
+    <span
+      class="material-symbols-outlined bg-[--sidebar-color] rounded-md text-3xl"
+      style="color: rgb(70, 70, 70)"
+    >
+      home
+    </span>
   </button>
+
   <button
-    class="absolute z-50 top-[100px] right-[7px]"
+    class="absolute z-50 top-[108px] right-[10px]"
     :class="`${isOnSplash ? 'hidden' : ''}`"
     @click="$emit('home')"
   >
-    <span class="material-symbols-outlined text-4xl" style="color: rgb(70, 70, 70)">
+    <span
+      class="material-symbols-outlined text-3xl bg-[--sidebar-color] rounded-md"
+      style="color: rgb(70, 70, 70)"
+    >
       zoom_out_map
     </span>
   </button>

@@ -38,18 +38,6 @@ aside {
   }
 }
 
-// .Queens {
-//   background: rgba(206, 173, 148, 0.85);
-// }
-
-// .Brooklyn {
-//   background: rgba(207, 177, 192, 0.85);
-// }
-
-// .Bronx {
-//   background: rgba(163, 200, 247, 0.85);
-// }
-
 #menu-slideshow {
   color: var(--white-color);
   border: 4px solid var(--black-color);
@@ -63,16 +51,16 @@ aside {
 }
 
 #neighborhood {
-  width: 70vw;
   pointer-events: none;
   height: auto;
-  right: 0;
-  padding-top: calc(2.5vh + 1rem);
+  right: 60px;
+  padding-top: 0.75rem;
   color: var(--black-color);
 
   h1 {
-    font-size: 2.25rem;
+    font-size: 1.25rem;
     font-weight: 700;
+    padding: 0.5rem 0;
   }
 
   button {
@@ -82,9 +70,8 @@ aside {
 
 #dropdown {
   pointer-events: all;
-  border-radius: 2rem;
   background: var(--sidebar-color);
-  // box-shadow: 2px 2px 10px 2px gray;
+  box-shadow: 0px 3px 2px 0px gray;
 }
 
 #dropdown:hover {
@@ -97,7 +84,6 @@ aside {
 <script setup lang="ts">
 import { sideMenuStore } from '@/stores/sideMenuState'
 import { neighborhoodStore } from '@/stores/neighborhoodState'
-import { onBeforeUnmount } from 'vue'
 import { onMounted } from 'vue'
 import { ref } from 'vue'
 
@@ -106,23 +92,10 @@ const neighborhoods = neighborhoodStore()
 const activeSlideIndex = ref(0)
 const isMenuOpen = ref(false)
 
-const intervalRef = ref()
-const timeInterval = 3000
-
-const progress = ref(0)
-const progressBar = ref()
-const progressBarInterval = ref()
-
 const slidesRef = ref()
 
 const UpdateSlide = (goForward: boolean) => {
-  // clearInterval(progressBarInterval.value)
-  // progress.value = 0
   if (sideMenu.$state.slideShow == undefined) return
-  if (sideMenu.$state.slideShow.length == 1) {
-    slidesRef.value[0].style.display = 'none'
-    return
-  }
   let slides = slidesRef.value
   slides[activeSlideIndex.value].style.display = 'none'
   if (goForward) {
@@ -135,26 +108,13 @@ const UpdateSlide = (goForward: boolean) => {
   slides[activeSlideIndex.value].style.display = 'block'
 }
 
-function updateProgressBar() {
-  progressBar.value.style.width = (progress.value / timeInterval) * 180 + '%'
-  if (progress.value + 10 > timeInterval) progress.value = timeInterval
-  else progress.value += 10
-}
-
 function loadSlides() {
   // consider adding preloading??
   slidesRef.value = document.getElementsByClassName('slide-img') as HTMLCollectionOf<HTMLElement>
 }
 
 onMounted(() => {
-  // progressBar.value = document.getElementById('progress-bar')
-  // progressBarInterval.value = setInterval(updateProgressBar, 10)
-  // intervalRef.value = setInterval(UpdateSlide, timeInterval)
   loadSlides()
-})
-
-onBeforeUnmount(() => {
-  // clearInterval(intervalRef.value)
 })
 
 function toggleMenu(isOn: boolean) {
@@ -163,7 +123,12 @@ function toggleMenu(isOn: boolean) {
 }
 
 function resetSlide() {
+  let slides = slidesRef.value
+  // for (let i = 0; i < slides.length; i++) {
+  //   slides[i].style.display = 'none'
+  // }
   activeSlideIndex.value = 0
+  slides[0].style.display = 'block'
 }
 
 defineExpose({ toggleMenu, resetSlide, UpdateSlide, loadSlides })
@@ -177,12 +142,18 @@ const emit = defineEmits(['travel', 'fly'])
     class="absolute z-20 flex flex-column justify-center items-center"
     :class="`${isMenuOpen ? '' : 'hidden'}`"
   >
-    <div id="dropdown" class="inline-block w-1/3 text-center" :class="`${sideMenu.$state.borough}`">
-      <h1 class="pt-4">{{ sideMenu.$state.neighborhood }}</h1>
-      <span class="material-symbols-outlined mt-[-18px]"> arrow_drop_down </span>
-
+    <div
+      id="dropdown"
+      class="inline-block w-[200px] text-center rounded-md"
+      :class="`${sideMenu.$state.borough}`"
+    >
+      <div class="flex flex-row justify-center items-center space-x-1">
+        <span class="material-symbols-outlined"> location_on </span>
+        <h1>{{ sideMenu.$state.neighborhood }}</h1>
+        <span class="material-symbols-outlined"> keyboard_arrow_down </span>
+      </div>
       <button
-        class="dropdown-button w-full bg-white/20 opacity-80 transition ease-in-out duration-500 hover:opacity-100 hover:bg-white/0 py-2 rounded"
+        class="dropdown-button w-full bg-white/20 opacity-80 transition ease-in-out duration-500 hover:opacity-100 hover:bg-white/0"
         v-for="(item, key) in neighborhoods.$state.neighborhoodList.filter(
           (x) => x != sideMenu.$state.neighborhood
         )"
@@ -238,14 +209,11 @@ const emit = defineEmits(['travel', 'fly'])
             >
           </button>
 
-          <div class="hidden flex z-20 h-1 w-4/5 bg-transparent rounded self-end mb-4">
-            <div id="progress-bar" class="bg-gray-300 w-full rounded"></div>
-          </div>
-
           <img
             v-for="(item, key) in sideMenu.$state.slideShow"
             :key="key"
             :src="item"
+            :class="`${key == 0 ? '' : 'hidden'}`"
             class="slide-img absolute w-full h-full object-cover"
           />
 
