@@ -11,22 +11,22 @@ aside {
   padding-bottom: 1.5rem;
   padding-left: 2.5rem;
   padding-right: 2.5rem;
-  margin-left: 1.5rem;
+  margin-left: 2.5rem;
   background-color: var(--sidebar-color);
-  color: var(--white-color);
   transition: 0.2s ease-out;
   z-index: 10;
   color: var(--black-color);
   width: var(--sidebar-width);
   top: 50%;
   transform: translateY(-50%);
-  // box-shadow: 2px 2px 10px 2px gray;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
 
   .menu-content {
     display: flex;
     flex-direction: column;
     width: 100%;
     height: 95%;
+    // padding: 0 2rem;
   }
 
   &.menuNotOpen {
@@ -38,6 +38,21 @@ aside {
   }
 }
 
+.East {
+  color: #3e7e77;
+  border-color: #3e7e77;
+}
+
+.Laurelton {
+  color: #5f9dd3;
+  border-color: #5f9dd3;
+}
+
+.Eastchester {
+  color: #daab3e;
+  border-color: #daab3e;
+}
+
 #menu-slideshow {
   color: var(--white-color);
   border: 4px solid var(--black-color);
@@ -47,6 +62,7 @@ aside {
   .slide-button {
     width: auto;
     height: auto;
+    display: none;
   }
 }
 
@@ -71,7 +87,7 @@ aside {
 #dropdown {
   pointer-events: all;
   background: var(--sidebar-color);
-  box-shadow: 0px 3px 2px 0px gray;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
 }
 
 #dropdown:hover {
@@ -139,7 +155,7 @@ const emit = defineEmits(['travel', 'fly'])
   <!-- neighbor navigation -->
   <div
     id="neighborhood"
-    class="absolute z-20 flex flex-column justify-center items-center"
+    class="absolute z-20 flex flex-col justify-center items-center"
     :class="`${isMenuOpen ? '' : 'hidden'}`"
   >
     <div
@@ -148,9 +164,13 @@ const emit = defineEmits(['travel', 'fly'])
       :class="`${sideMenu.$state.borough}`"
     >
       <div class="flex flex-row justify-center items-center space-x-1">
-        <span class="material-symbols-outlined"> location_on </span>
+        <span class="material-symbols-outlined" :class="`${sideMenu.$state.neighborhood}`">
+          location_on
+        </span>
         <h1>{{ sideMenu.$state.neighborhood }}</h1>
-        <span class="material-symbols-outlined"> keyboard_arrow_down </span>
+        <span class="material-symbols-outlined" :class="`${sideMenu.$state.neighborhood}`">
+          keyboard_arrow_down
+        </span>
       </div>
       <button
         class="dropdown-button w-full bg-white/20 opacity-80 transition ease-in-out duration-500 hover:opacity-100 hover:bg-white/0"
@@ -170,21 +190,29 @@ const emit = defineEmits(['travel', 'fly'])
   <!-- side menu -->
   <aside :class="`${isMenuOpen ? sideMenu.$state.borough : 'menuNotOpen'}`">
     <div class="menu-content" :class="`${sideMenu.$state.id}`">
-      <div class="flex flex-row items-baseline w-full py-4">
-        <button>
-          <span class="material-symbols-outlined rotate-180" @click="`${$emit('fly', false)}`"
-            >arrow_forward_ios</span
-          >
-        </button>
+      <button class="absolute left-0 top-[50%] pl-2" @click="`${$emit('fly', false)}`">
+        <span
+          class="transition ease-in-out material-symbols-outlined rotate-180 font-bold text-4xl hover:opacity-50"
+          :class="`${sideMenu.$state.neighborhood}`"
+          >arrow_forward_ios</span
+        >
+      </button>
+      <button class="absolute right-0 top-[50%] pr-2" @click="`${$emit('fly', true)}`">
+        <span
+          class="transition ease-in-out material-symbols-outlined font-bold text-4xl hover:opacity-50"
+          :class="`${sideMenu.$state.neighborhood}`"
+          >arrow_forward_ios</span
+        >
+      </button>
+      <div class="flex flex-col items-center w-full py-4">
         <h1 class="grow text-4xl font-semibold text-center">{{ sideMenu.$state.title }}</h1>
-        <button>
-          <span class="material-symbols-outlined" @click="`${$emit('fly', true)}`"
-            >arrow_forward_ios</span
-          >
-        </button>
+        <div
+          class="w-[60%] border-solid border-2 mt-4 rounded"
+          :class="`${sideMenu.$state.neighborhood}`"
+        ></div>
       </div>
 
-      <div class="h-full overflow-y-auto">
+      <div class="h-full overflow-y-auto px-4">
         <p class="text-lg pb-4">{{ sideMenu.$state.description }}</p>
 
         <!-- Main Image
