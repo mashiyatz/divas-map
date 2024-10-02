@@ -32,7 +32,7 @@ p {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="https://unpkg.com/maplibre-gl@4.5.2/dist/maplibre-gl.css" />
   </head>
-  <SplashScreen ref="splash" @home="onHome" />
+  <SplashScreen ref="splash" @home="onHome" @info="showInfo" />
   <SideMenu ref="menu" @fly="onFly" @travel="onChangeNeighborhood" />
   <div id="layout">
     <MapView ref="mapview" @openMenu="onOpenMenu" />
@@ -76,7 +76,12 @@ export default {
     },
     onOpenMenu() {
       const menuComponent: any = this.$refs.menu
+      menuComponent.toggleInfo(false)
       menuComponent.toggleMenu(true)
+    },
+    showInfo() {
+      const menuComponent: any = this.$refs.menu
+      menuComponent.toggleInfo(true)
     }
   }
 }

@@ -53,11 +53,12 @@
 import { ref } from 'vue'
 
 const isOnSplash = ref(true)
-const emit = defineEmits(['home'])
+const emit = defineEmits(['home', 'info'])
 
 function ToggleSplash() {
   isOnSplash.value = !isOnSplash.value
   if (isOnSplash.value) emit('home')
+  else emit('info')
 }
 </script>
 

@@ -1,4 +1,22 @@
 <style lang="scss" scoped>
+#info-popup {
+  position: absolute;
+  z-index: 50;
+  width: var(--sidebar-width);
+  color: var(--black-color);
+  background-color: var(--sidebar-color);
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  padding-left: 2.5rem;
+  padding-right: 2.5rem;
+  margin-left: 2.5rem;
+  height: 95vh;
+  box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
+  top: 50%;
+  transform: translateY(-50%);
+  border-radius: 2rem;
+}
+
 aside {
   display: block;
   position: absolute;
@@ -26,7 +44,6 @@ aside {
     flex-direction: column;
     width: 100%;
     height: 95%;
-    // padding: 0 2rem;
   }
 
   &.menuNotOpen {
@@ -107,6 +124,7 @@ const sideMenu = sideMenuStore()
 const neighborhoods = neighborhoodStore()
 const activeSlideIndex = ref(0)
 const isMenuOpen = ref(false)
+const isInfoOpen = ref(false)
 
 const slidesRef = ref()
 
@@ -138,6 +156,11 @@ function toggleMenu(isOn: boolean) {
   else isMenuOpen.value = false
 }
 
+function toggleInfo(isOn: boolean) {
+  if (isOn) isInfoOpen.value = true
+  else isInfoOpen.value = false
+}
+
 function resetSlide() {
   let slides = slidesRef.value
   // for (let i = 0; i < slides.length; i++) {
@@ -147,7 +170,7 @@ function resetSlide() {
   slides[0].style.display = 'block'
 }
 
-defineExpose({ toggleMenu, resetSlide, UpdateSlide, loadSlides })
+defineExpose({ toggleMenu, toggleInfo, resetSlide, UpdateSlide, loadSlides })
 const emit = defineEmits(['travel', 'fly'])
 </script>
 
@@ -283,4 +306,27 @@ const emit = defineEmits(['travel', 'fly'])
       </div>
     </div>
   </aside>
+
+  <!-- info popup -->
+  <div id="info-popup" :class="`${isInfoOpen ? '' : 'hidden'}`">
+    <div class="overflow-y-hidden h-[95%]">
+      <h1 class="text-4xl text-center font-semibold">Assets Sourced by and for Community</h1>
+      <div class="h-full overflow-y-auto px-4 flex flex-col pb-4">
+        <div class="w-[60%] border-solid border-2 my-4 rounded self-center"></div>
+        <p class="text-lg pb-4">
+          Students all over the city conducted community street audits of their neighborhoods and
+          identified community assets to be featured on this interactive map!
+          <span style="font-family: Merriweather; color: brown">Click on one of the markers</span>
+          to see what they found, or learn more about The Anti-Gun Violence Mapping Project through
+          the video below.
+        </p>
+        <iframe
+          class="w-full h-96"
+          src="https://www.youtube.com/embed/5hNYzMJha5Q?si=e6NKXZX2pkuDDrAg"
+          frameborder="1"
+          referrerpolicy="strict-origin-when-cross-origin"
+        ></iframe>
+      </div>
+    </div>
+  </div>
 </template>
