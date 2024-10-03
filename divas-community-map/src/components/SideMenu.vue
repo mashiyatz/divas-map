@@ -17,6 +17,10 @@
   border-radius: 2rem;
 }
 
+h1 {
+  font-weight: 750;
+}
+
 aside {
   display: block;
   position: absolute;
@@ -92,7 +96,6 @@ aside {
 
   h1 {
     font-size: 1.25rem;
-    font-weight: 700;
     padding: 0.5rem 0;
   }
 
@@ -228,7 +231,7 @@ const emit = defineEmits(['travel', 'fly'])
         >
       </button>
       <div class="flex flex-col items-center w-full py-4">
-        <h1 class="grow text-4xl font-semibold text-center">{{ sideMenu.$state.title }}</h1>
+        <h1 class="grow text-4xl text-center">{{ sideMenu.$state.title }}</h1>
         <div
           class="w-[60%] border-solid border-2 mt-4 rounded"
           :class="`${sideMenu.$state.neighborhood}`"
@@ -310,7 +313,7 @@ const emit = defineEmits(['travel', 'fly'])
   <!-- info popup -->
   <div id="info-popup" :class="`${isInfoOpen ? '' : 'hidden'}`">
     <div class="overflow-y-hidden h-[95%]">
-      <h1 class="text-4xl text-center font-semibold">Assets Sourced by and for Community</h1>
+      <h1 class="text-4xl text-center">Assets Sourced by and for Community</h1>
       <div class="h-full overflow-y-auto px-4 flex flex-col pb-4">
         <div class="w-[60%] border-solid border-2 my-4 rounded self-center"></div>
         <p class="text-lg pb-4">

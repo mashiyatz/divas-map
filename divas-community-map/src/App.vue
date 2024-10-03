@@ -11,7 +11,8 @@
 }
 
 * {
-  font-family: 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: 'Nunito Variable', 'Roboto', 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS',
+    sans-serif;
 }
 
 p {

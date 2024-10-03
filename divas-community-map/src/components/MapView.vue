@@ -148,7 +148,7 @@ export default {
           'text-radial-offset': 1.25,
           'text-justify': 'auto',
           'text-size': 24,
-          'text-font': ['literal', ['Roboto Bold']],
+          'text-font': ['literal', ['Nunito Bold']],
           // 'text-font': ['literal', ['Frutiger Neue Bold']],
           'icon-image': 'marker',
           'icon-size': 0.1,
