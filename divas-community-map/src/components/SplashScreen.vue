@@ -6,7 +6,7 @@
         by expanding to <br />
         what is good in the <br />
         community,<br />
-        <span style="font-weight: 900; font-style: italic">change </span>is possible.
+        <span style="font-weight: 900; font-style: italic; font-family: Merriweather;">change </span>is possible.
       </p>
     </div>
     <div class="back absolute w-full h-full backdrop-brightness-[70%] pointer-events-none"></div>

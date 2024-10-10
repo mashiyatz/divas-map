@@ -73,6 +73,7 @@ export default {
       const mapComponent: any = this.$refs.mapview
       const menuComponent: any = this.$refs.menu
       mapComponent.resetToHome()
+      menuComponent.toggleInfo(false)
       menuComponent.toggleMenu(false)
     },
     onOpenMenu() {

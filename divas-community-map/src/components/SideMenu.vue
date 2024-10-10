@@ -280,7 +280,7 @@ const emit = defineEmits(['travel', 'fly'])
         <div id="menu-media" class="mt-6 w-full">
           <!-- add border to media? border-4 border-black -->
           <img
-            class="h-96"
+            class="w-full"
             :class="`${sideMenu.$state.mediaType == 'image' ? 'image-media' : 'hidden'}`"
             :src="`${sideMenu.$state.url}`"
           />

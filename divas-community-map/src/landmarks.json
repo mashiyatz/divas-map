@@ -54,20 +54,11 @@
       "neighborhood": "Laurelton",
       "borough": "Queens",
       "title": "Linden SDA School",
-      "description": "Students from The Laurelton School and The Ralph Bunche School participated in the Anti-Gun Violence Asset Mapping Project by interacting with a 3x10 vinyl map of Laurelton and exploring the existing community assets in their neighborhood. Students then worked together in groups creating community assets with magnetic tiles that included: shelters, art centers, community gardens and healthier food options.",
+      "description": "",
       "mediaType": "",
       "url": "",
       "slideShow": [
-        "files/Laurelton/Audit_SDA_Linden_School/001_auditQueens_DSC01324.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/002_auditQueens_IMG_3949.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/003_auditQueens_DSC00513.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/004_auditQueens_DSC01334.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/005_auditQueens_IMG_3952.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/006_auditQueens_DSC00440.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/007_auditQueens_DSC00434.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/008_auditQueens_DSC00432.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/009_auditQueens_DSC00495.jpg",
-        "files/Laurelton/Audit_SDA_Linden_School/010_auditQueens_DSC00485.jpg"
+          "files/Laurelton/Audit_SDA_Linden_School/001_LindenSDASchool_DSC00195.JPG"
       ]
     },
     "coordinates": [-73.744075, 40.672916]
@@ -82,7 +73,6 @@
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/Hz_PGKR6bf4?si=Dlse2kX5BaH2k455",
       "slideShow": [
-        "files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg",
         "files/Laurelton/Asset_UPS_Store/001_UPSQueens_IMG_4381.jpg"
       ]
     },
