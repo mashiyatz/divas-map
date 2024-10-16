@@ -7,7 +7,7 @@ interface NeighborhoodState {
 export const neighborhoodStore = defineStore('neighborhoodState', {
   state: (): NeighborhoodState => {
     return {
-      neighborhoodList: ['Laurelton', 'East New York', 'Eastchester']
+      neighborhoodList: ['Laurelton', 'East New York', 'Eastchester', 'Hunts Point']
     }
   }
 })

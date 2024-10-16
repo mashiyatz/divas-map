@@ -59,6 +59,7 @@ aside {
   }
 }
 
+// neighborhood styling
 .East {
   color: #3e7e77;
   border-color: #3e7e77;
@@ -73,6 +74,12 @@ aside {
   color: #daab3e;
   border-color: #daab3e;
 }
+
+.Hunts {
+  color: #e05a42;
+  border-color: #e05a42;
+}
+////
 
 #menu-slideshow {
   color: var(--white-color);

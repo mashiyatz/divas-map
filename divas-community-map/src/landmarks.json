@@ -54,7 +54,7 @@
       "neighborhood": "Laurelton",
       "borough": "Queens",
       "title": "Linden SDA School",
-      "description": "",
+      "description": "Linden SDA School students conducted community street audits to identify assets that highlighted the importance of economic development and health initiatives as a catalyst to fight gun violence.",
       "mediaType": "",
       "url": "",
       "slideShow": [
@@ -84,9 +84,9 @@
       "neighborhood": "East New York",
       "borough": "Brooklyn",
       "title": "Williams Avenue Community Garden",
-      "description": "",
-      "mediaType": "",
-      "url": "",
+      "description": "The students of The Trey Whitfield share why they identify the Williams Avenue Garden as vital community asset and a space for health and healing.",
+      "mediaType": "embed",
+      "url": "https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1935547730&color=%23e5c5d5&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true",
       "slideShow": [
         "files/EastNewYork/Asset_WilliamsAveCommGarden/001_WilliamsAveGardenBrklyn_IMG_0054.jpg",
         "files/EastNewYork/Asset_WilliamsAveCommGarden/002_WilliamsAveGardenBrklyn_IMG_0312.jpg",
@@ -108,7 +108,7 @@
       "neighborhood": "Eastchester",
       "borough": "The Bronx",
       "title": "Edenwald Houses",
-      "description": "",
+      "description": "DIVAS for Social Justice worked with youth from Edenwald Houses by providing STEM based activities that culminated in youth creating an Anti-Gun Violence Asset Mapping Project. This audio clip features youth speaking about the positive aspects of their community and what could be a solution to gun violence.",
       "mediaType": "embed",
       "url": "https://www.youtube.com/embed/6akxixWi1Bc?si=kCFbSKhbx4VsXWOv",
       "slideShow": [
@@ -121,5 +121,41 @@
       ]
     },
     "coordinates": [-73.842941, 40.884541]
+  },
+  "7": {
+    "properties": {
+      "id": 7,
+      "neighborhood": "Hunts Point",
+      "borough": "The Bronx",
+      "title": "John Adams Houses",
+      "description": "DIVAS for Social Justice partnered with Bronx Community Justice Works to capture participants' views living in John Adams NYCHA Development. Participants shared their solutions to a more just community without gun violence.",
+      "mediaType": "embed",
+      "url": "https://www.youtube.com/embed/hJ71ISriitg?si=KmKvyJ2dnvqRcfcJ",
+      "slideShow": [
+        "files/TheBronx/Asset_JohnAdamsHousing/001_JAdamsHousesBronx_IMG_5392.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/002_JAdamsHousesBronx_COURT_C8B20326-55E7-4C0B-8676-921736A730F6.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/003_JAdamsHousesBronx_EF0D491C-770E-49A8-ACBC-A3406C4DD7B5.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/004_JAdamsHousesBronx_COURT_D4CE3530-9776-4DF9-9976-CA2F4F0FCE79.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/005_JAdamsHousesBronx_COURT_GALLERY_IMG_9555.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/006_JAdamsHousesBronx_COURT_GALLERY_BE11CF9C-52FD-4D95-A30D-106DE7BF92D5.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/007_JAdamsHousesBronx_IMG_3274.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/008_JAdamsHousesBronx_IMG_3153.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/009_JAdamsHousesBronx_IMG_3173.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/010_JAdamsHousesBronx_COURT_IMG_5623.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/011_JAdamsHousesBronx_COURT_GALLERY_IMG_9516.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/012_JAdamsHousesBronx_COURT_IMG_3215.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/013_JAdamsHousesBronx_COURT_GALLERY_IMG_3185.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/014_JAdamsHousesBronx_IMG_3218.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/015_JAdamsHousesBronx_IMG_9531.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/016_JAdamsHousesBronx_IMG_3197.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/017_JAdamsHousesBronx_COURT_GALLERY_IMG_3188.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/018_JAdamsHousesBronx_IMG_3276.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/019_JAdamsHousesBronx_IMG_2981.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/020_JAdamsHousesBronx_IMG_2989.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/021_JAdamsHousesBronx_COURT_IMG_3267.jpg",
+        "files/TheBronx/Asset_JohnAdamsHousing/022_JAdamsHousesBronx_IMG_3284.jpg"
+      ]
+    },
+    "coordinates": [-73.907234, 40.816132]
   }
 }

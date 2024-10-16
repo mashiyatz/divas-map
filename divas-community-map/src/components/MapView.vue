@@ -6,7 +6,7 @@ import untypedLandmarks from '../landmarks.json'
 
 const landmarks: { [key: number]: any } = untypedLandmarks
 
-// fix bounds around Queens
+// fix bounds around city
 const bounds: LngLatBoundsLike | undefined = [
   [-74.4207, 40.38369], // Southwest coordinates
   [-73.165512, 41.11609] // Northeast coordinates
@@ -24,7 +24,6 @@ export default {
     const map: Map = new Map({
       container: 'map',
       style:
-        //'https://api.maptiler.com/maps/f5163ed8-5757-449d-86a8-d873f6116318/style.json?key=vbWcEeVNDHjFUuEi2uGd',
         'https://api.maptiler.com/maps/6982f052-362d-4281-a878-7143d45b368b/style.json?key=vbWcEeVNDHjFUuEi2uGd',
       center: [-73.74959, 40.682273],
       pitch: 45,
@@ -125,6 +124,8 @@ export default {
               '#3e7e77',
               'Eastchester-Edenwald-Baychester',
               '#daab3e',
+              'Melrose',
+              '#e05a42',
               '#FFFFFF00'
             ],
             'fill-opacity': 0.5
