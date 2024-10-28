@@ -1,10 +1,8 @@
 <style lang="scss">
 :root {
-  // make sidebar-width responsive
-  --sidebar-width: 40vw;
+  // make sidebar-width responsive for mobile
+  --sidebar-width: 35vw;
   --default-color: rgb(35 55 75 / 90%);
-  // --sidebar-color: rgb(224 219 199 / 95%);
-  // --sidebar-color: rgb(250 250 250 / 95%);
   --sidebar-color: rgb(247 243 243 / 95%);
   --white-color: #fff;
   --black-color: rgb(70, 70, 70);

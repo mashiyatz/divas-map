@@ -77,15 +77,15 @@ function ToggleSplash() {
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.1);
   background-size: cover;
-  opacity: 0;
+  opacity: 1;
   visibility: hidden;
   transition:
-    visibility ease-in-out 1s,
-    opacity ease-in-out 0.8s;
+     visibility 0.8s,
+     opacity ease-in-out 0.8s;
 
   .back {
     opacity: 0;
-    transition: opacity ease-in-out 0.8s;
+    transition: opacity ease-in 0.8s;
   }
 
   &.isOnSplash {
