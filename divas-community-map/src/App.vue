@@ -2,6 +2,7 @@
 :root {
   // make sidebar-width responsive for mobile
   --sidebar-width: 35vw;
+  --sidebar-min-width: 480px;
   --default-color: rgb(35 55 75 / 90%);
   --sidebar-color: rgb(247 243 243 / 95%);
   --white-color: #fff;

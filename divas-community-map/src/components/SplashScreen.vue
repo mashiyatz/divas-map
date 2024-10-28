@@ -3,9 +3,9 @@
     <div class="back w-full h-full backdrop-blur-sm backdrop-brightness-[60%]"></div>
     <div class="absolute w-[85%] self-center text-center">
       <p class="text-[9vw]/[11vw] text-left opacity-20 pb-20">
-        by expanding to <br />
-        what is good in the <br />
-        community,<br />
+        by expanding<br />
+        what is good in<br />
+        the community,<br />
         <span style="font-weight: 900; font-style: italic; font-family: Merriweather;">change </span>is possible.
       </p>
     </div>

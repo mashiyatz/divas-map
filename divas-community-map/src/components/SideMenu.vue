@@ -3,6 +3,7 @@
   position: absolute;
   z-index: 50;
   width: var(--sidebar-width);
+  min-width: var(--sidebar-min-width);
   color: var(--black-color);
   background-color: var(--sidebar-color);
   padding-top: 1.5rem;
@@ -39,6 +40,7 @@ aside {
   z-index: 10;
   color: var(--black-color);
   width: var(--sidebar-width);
+  min-width: var(--sidebar-min-width);
   top: 50%;
   transform: translateY(-50%);
   box-shadow: 0px 0px 0px 2px rgba(0, 0, 0, 0.1);
